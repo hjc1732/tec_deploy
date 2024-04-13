@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>微信支付 | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="微信支付">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html">
+    <meta name="twitter:title" content="微信支付">
+    <meta name="twitter:url" content="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1712123086861" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-93.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-79.js?v=1712123086861" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1712123086861">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>商城项目</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/实战/商城/项目笔记.html" class="sidebar-link">项目笔记</a></li><li><a href="/实战/商城/网页静态化技术.html" class="sidebar-link">网页静态化技术</a></li><li><a href="/实战/商城/微信支付.html" class="active sidebar-link">微信支付</a></li><li><a href="/实战/商城/单点登录SSO.html" class="sidebar-link">单点登录SSO</a></li><li><a href="/实战/商城/IdWorker.html" class="sidebar-link">IdWorker</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="微信支付"><a href="#微信支付" class="header-anchor">#</a> 微信支付</h1> <h1 id="一-微信支付简介"><a href="#一-微信支付简介" class="header-anchor">#</a> 一：微信支付简介</h1> <h2 id="_1-1-微信支付申请"><a href="#_1-1-微信支付申请" class="header-anchor">#</a> 1.1：微信支付申请</h2> <p><strong>第一步：注册公众号（类型须为：服务号）</strong></p> <p>注册地址：https://mp.weixin.qq.com/cgi-bin/registermidpage?action=index&amp;lang=zh_CN&amp;token=</p> <p><img src="/assets/img/image-20201108183453883.04545a68.png" alt="image-20201108183453883"></p> <p><strong>第二步：认证公众号</strong></p> <blockquote><p>公众号认证后才可申请微信支付，认证费：300元/次。</p></blockquote> <p><img src="/assets/img/image-20201108184412586.c0ad558d.png" alt="image-20201108184412586"></p> <p><strong>第三步：提交资料申请微信支付</strong></p> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>登录公众平台，点击左侧菜单【微信支付】，开始填写资料等待审核，审核时间为1-5个
+工作日内。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>第四步：开户成功，登录商户平台进行验证</strong></p> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>资料审核通过后，请登录联系人邮箱查收商户号和密码，并登录商户平台填写财付通备
+付金打的小额资金数额，完成账户验证。
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>第五步：在线签署协议</strong></p> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>本协议为线上电子协议，签署后方可进行交易及资金结算，签署完立即生效。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>第六步：申请成功获取秘钥</strong></p> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>千锋
+- 商户编号mch_id：1497984412
+- 商户账号AppID：wx632c8f211f8122c6
+- 商户Key：sbNCm1JnevqI36LrEaxFwcaT0hkGxFnC
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="_1-2-微信支付开发文档"><a href="#_1-2-微信支付开发文档" class="header-anchor">#</a> 1.2： 微信支付开发文档</h2> <p>在线微信支付开发文档：https://pay.weixin.qq.com/wiki/doc/api/index.html</p> <h2 id="_1-3-调用统一下单接口-支付订单"><a href="#_1-3-调用统一下单接口-支付订单" class="header-anchor">#</a> 1.3：调用统一下单接口  (支付订单)</h2> <p>第一步：pom依赖</p> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.tedzhdz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>wxpay-sdk<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>第二步：微信配置</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>freemarker<span class="token punctuation">.</span>demo</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>github<span class="token punctuation">.</span>wxpay<span class="token punctuation">.</span>sdk<span class="token punctuation">.</span></span><span class="token class-name">IWXPayDomain</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>github<span class="token punctuation">.</span>wxpay<span class="token punctuation">.</span>sdk<span class="token punctuation">.</span></span><span class="token class-name">WXPayConfig</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">InputStream</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WXConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WXPayConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;wx632c8f211f8122c6&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;1497984412&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;sbNCm1JnevqI36LrEaxFwcaT0hkGxFnC&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">InputStream</span> <span class="token function">getCertStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">IWXPayDomain</span> <span class="token function">getWXPayDomain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">IWXPayDomain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">report</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">,</span> <span class="token keyword">long</span> l<span class="token punctuation">,</span> <span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">public</span> <span class="token class-name">DomainInfo</span> <span class="token function">getDomain</span><span class="token punctuation">(</span><span class="token class-name">WXPayConfig</span> wxPayConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DomainInfo</span><span class="token punctuation">(</span><span class="token string">&quot;api.mch.weixin.qq.com&quot;</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>              
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br></div></div><p>第三步：测试统一下单接口</p> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>步骤：
+1:构建配置对象
+2:封装请求参数
+3:map转xml
+4:发送请求WXPayRequest request = new WXPayRequest(config);
+5:响应结果转map集合
+6:获取支付地址
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code>
+        <span class="token comment">//测试统一下单接口</span>
+        <span class="token comment">//1:构建配置对象</span>
+        <span class="token class-name">WXConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//2:封装请求参数   网页静态化技术</span>
+        <span class="token class-name">Map</span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;appid&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;mch_id&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;nonce_str&quot;</span><span class="token punctuation">,</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;body&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;锋迷商城订单&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;out_trade_no&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;2020121212&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;total_fee&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token operator">+</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;spbill_create_ip&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;127.0.0.1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;notify_url&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;http://192.168.234.122:8080/notify&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;trade_type&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;NATIVE&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//3:map转xml</span>
+        <span class="token class-name">String</span> requestXml <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//4:发送请求WXPayRequest request = new WXPayRequest(config);</span>
+        <span class="token class-name">WXPayRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXPayRequest</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> resXML <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">requestWithoutCert</span><span class="token punctuation">(</span><span class="token string">&quot;/pay/unifiedorder&quot;</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            requestXml<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resXML<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token comment">//5:响应XML结果转map集合</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> resMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>resXML<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//6:获取支付地址</span>
+        <span class="token class-name">String</span> code_url <span class="token operator">=</span> resMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;code_url&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>code_url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h2 id="_1-4-二维码插件qrcode-js"><a href="#_1-4-二维码插件qrcode-js" class="header-anchor">#</a> 1.4： 二维码插件QRcode.js</h2> <div class="language-html line-numbers-mode"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>qrcode<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">var</span> qrcode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QRCode</span><span class="token punctuation">(</span><span class="token string">&quot;qrcode&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">&quot;http://www.runoob.com&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">width</span><span class="token operator">:</span> <span class="token number">128</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">128</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">colorDark</span> <span class="token operator">:</span> <span class="token string">&quot;#000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">colorLight</span> <span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">correctLevel</span> <span class="token operator">:</span> QRCode<span class="token punctuation">.</span>CorrectLevel<span class="token punctuation">.</span><span class="token constant">H</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="_1-5-查询订单状态接口"><a href="#_1-5-查询订单状态接口" class="header-anchor">#</a> 1.5：查询订单状态接口</h2> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>步骤：
+1:构建配置对象
+2:封装请求参数
+3:map转xml
+4:发送请求WXPayRequest request = new WXPayRequest(config);
+5:响应结果转map集合
+6:获取支付状态
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code>  <span class="token comment">//1:构建配置对象</span>
+        <span class="token class-name">WXConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//2:封装请求参数</span>
+        <span class="token class-name">Map</span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;appid&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;mch_id&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;out_trade_no&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;2020121212&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;nonce_str&quot;</span><span class="token punctuation">,</span><span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//3:map转xml</span>
+        <span class="token class-name">String</span> requestXML <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//4:发送请求WXPayRequest request = new WXPayRequest(config);</span>
+        <span class="token class-name">WXPayRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXPayRequest</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> resXml <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">requestWithoutCert</span><span class="token punctuation">(</span><span class="token string">&quot;/pay/orderquery&quot;</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            requestXML<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//5:响应结果转map集合</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> resMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>resXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//6:获取支付状态</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;trade_state&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="_1-6-关闭订单接口"><a href="#_1-6-关闭订单接口" class="header-anchor">#</a> 1.6：关闭订单接口</h2> <div class="language-txt line-numbers-mode"><pre class="language-txt"><code>步骤：
+1:构建配置对象
+2:封装请求参数
+3:map转xml
+4:发送请求WXPayRequest request = new WXPayRequest(config);
+5:响应结果转map集合
+6:获取关闭结果
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//1:构建配置对象</span>
+<span class="token class-name">WXConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//2:封装请求参数</span>
+<span class="token class-name">Map</span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;appid&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;mch_id&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;out_trade_no&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;20201212121&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;nonce_str&quot;</span><span class="token punctuation">,</span><span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//3:map转xml</span>
+<span class="token class-name">String</span> reqeustXML <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//4:发送请求WXPayRequest request = new WXPayRequest(config);</span>
+<span class="token class-name">WXPayRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXPayRequest</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> resXML <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">requestWithoutCert</span><span class="token punctuation">(</span><span class="token string">&quot;/pay/closeorder&quot;</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                           reqeustXML<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//5:响应结果转map集合</span>
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> resMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>resXML<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//6:获取关闭结果</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;result_code&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;result_msg&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h1 id="二-应用"><a href="#二-应用" class="header-anchor">#</a> 二：应用</h1> <h2 id="_2-1-统一下单"><a href="#_2-1-统一下单" class="header-anchor">#</a> 2.1：统一下单</h2> <blockquote><p>调用微信支付系统的统一下单接口，返回支付url，url返回给前端，前端生成支付二维码</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">OrderClient</span> orderClient<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">&quot;${pay.notify_url}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> notifyUrl<span class="token punctuation">;</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Result</span> <span class="token function">pay</span><span class="token punctuation">(</span><span class="token class-name">String</span> orderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">try</span> <span class="token punctuation">{</span>
+           <span class="token comment">//查询订单信息</span>
+           <span class="token class-name">WxbOrder</span> orderInfo <span class="token operator">=</span> orderClient<span class="token punctuation">.</span><span class="token function">findOrderInfo</span><span class="token punctuation">(</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+           <span class="token comment">//计算总金额</span>
+           <span class="token class-name">Integer</span> totalFee <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+           <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">WxbOrderItems</span> item <span class="token operator">:</span> orderInfo<span class="token punctuation">.</span><span class="token function">getOrderItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+               <span class="token class-name">Integer</span> buyNum <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getBuyNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token class-name">String</span> skuPrice <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getSkuPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token keyword">double</span> buyPrice <span class="token operator">=</span> <span class="token class-name">Double</span><span class="token punctuation">.</span><span class="token function">parseDouble</span><span class="token punctuation">(</span>skuPrice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token comment">//1  2.88</span>
+               <span class="token keyword">int</span> itemPrice <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>buyNum<span class="token operator">*</span>buyPrice<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               totalFee <span class="token operator">+=</span>itemPrice<span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
+           <span class="token comment">//调用微信的统一下单接口，下单</span>
+           <span class="token class-name">String</span> payUrl <span class="token operator">=</span> <span class="token function">weixinPay</span><span class="token punctuation">(</span>orderId<span class="token punctuation">,</span> totalFee<span class="token punctuation">,</span> notifyUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+           <span class="token class-name">Map</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           data<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;payUrl&quot;</span><span class="token punctuation">,</span>payUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           data<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;totalFee&quot;</span><span class="token punctuation">,</span>totalFee<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           data<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;orderId&quot;</span><span class="token punctuation">,</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+           <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token string">&quot;下单成功&quot;</span><span class="token punctuation">,</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span>  <span class="token keyword">new</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token string">&quot;下单失败&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">weixinPay</span><span class="token punctuation">(</span><span class="token class-name">String</span> orderId<span class="token punctuation">,</span><span class="token class-name">Integer</span> fee<span class="token punctuation">,</span><span class="token class-name">String</span> notifyUrl<span class="token punctuation">)</span> <span class="token keyword">throws</span>  <span class="token class-name">Exception</span><span class="token punctuation">{</span>
+        <span class="token comment">//1.构建配置</span>
+        <span class="token class-name">MyConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//2.封装请求数据</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> requestParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;appid&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;mch_id&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;nonce_str&quot;</span><span class="token punctuation">,</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;body&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;微分销&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;out_trade_no&quot;</span><span class="token punctuation">,</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//业务系统订单号</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;total_fee&quot;</span><span class="token punctuation">,</span>fee<span class="token operator">+</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//订单金额，单位为分</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;spbill_create_ip&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;127.0.0.1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;notify_url&quot;</span><span class="token punctuation">,</span>notifyUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;trade_type&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;NATIVE&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//扫码支付</span>
+
+        <span class="token comment">//3.将map转xml串</span>
+        <span class="token class-name">String</span> reqeuestParamsXml <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>requestParams<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//4.发请求</span>
+        <span class="token class-name">WXPayRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXPayRequest</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> resultXml <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">requestWithoutCert</span><span class="token punctuation">(</span><span class="token string">&quot;/pay/unifiedorder&quot;</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> reqeuestParamsXml<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resultXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//5.将resultXml转map集合</span>
+        <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> resultMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>resultXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;code_url&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token keyword">return</span> resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;code_url&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br></div></div><h4 id="二维码插件的使用"><a href="#二维码插件的使用" class="header-anchor">#</a> 二维码插件的使用</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">//生成支付二维码</span>
+<span class="token keyword">var</span> qrcode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QRCode</span><span class="token punctuation">(</span><span class="token string">&quot;qrImage&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">text</span><span class="token operator">:</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>payUrl<span class="token punctuation">,</span>
+    <span class="token literal-property property">width</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">colorDark</span> <span class="token operator">:</span> <span class="token string">&quot;#000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">colorLight</span> <span class="token operator">:</span> <span class="token string">&quot;#ffffff&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">correctLevel</span> <span class="token operator">:</span> QRCode<span class="token punctuation">.</span>CorrectLevel<span class="token punctuation">.</span><span class="token constant">H</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>回调</p> <h3 id=""><a href="#" class="header-anchor">#</a></h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="-2"><a href="#-2" class="header-anchor">#</a></h4> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="-3"><a href="#-3" class="header-anchor">#</a></h4> <div class="language-html line-numbers-mode"><pre class="language-html"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="-4"><a href="#-4" class="header-anchor">#</a></h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-java line-numbers-mode"><pre class="language-java"><code>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="-5"><a href="#-5" class="header-anchor">#</a></h2> <div class="language-java line-numbers-mode"><pre class="language-java"><code>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>监听延时消息</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>fengmi<span class="token punctuation">.</span>listener</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>api<span class="token punctuation">.</span>goods<span class="token punctuation">.</span></span><span class="token class-name">GoodsClient</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>fengmi<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">PayService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>fengmi<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span><span class="token class-name">Result</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>rocketmq<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">ConsumeMode</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>rocketmq<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">MessageModel</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>rocketmq<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">RocketMQMessageListener</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>rocketmq<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">RocketMQListener</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@RocketMQMessageListener</span><span class="token punctuation">(</span>consumerGroup <span class="token operator">=</span> <span class="token string">&quot;fengmi-pay-consumer-group&quot;</span><span class="token punctuation">,</span>
+    topic <span class="token operator">=</span> <span class="token string">&quot;order-delay&quot;</span><span class="token punctuation">,</span>selectorExpression <span class="token operator">=</span> <span class="token string">&quot;order-delay-tag&quot;</span><span class="token punctuation">,</span>
+    consumeMode <span class="token operator">=</span> <span class="token class-name">ConsumeMode</span><span class="token punctuation">.</span><span class="token constant">CONCURRENTLY</span><span class="token punctuation">,</span>
+    messageModel <span class="token operator">=</span> <span class="token class-name">MessageModel</span><span class="token punctuation">.</span><span class="token constant">CLUSTERING</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConsumerListener</span> <span class="token keyword">implements</span> <span class="token class-name">RocketMQListener</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">PayService</span> payService<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">GoodsClient</span> goodsClient<span class="token punctuation">;</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onMessage</span><span class="token punctuation">(</span><span class="token class-name">String</span> orderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//判断订单的支付状态</span>
+        <span class="token class-name">Result</span> result <span class="token operator">=</span> payService<span class="token punctuation">.</span><span class="token function">findOrderStatus</span><span class="token punctuation">(</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> result<span class="token punctuation">.</span><span class="token function">getSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token string">&quot;NOTPAY&quot;</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token comment">//关闭订单</span>
+            <span class="token class-name">Result</span> result1 <span class="token operator">=</span> payService<span class="token punctuation">.</span><span class="token function">closeOrder</span><span class="token punctuation">(</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">&quot;SUCCESS&quot;</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>result1<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                 <span class="token comment">//释放库存</span>
+                <span class="token class-name">Result</span> result2 <span class="token operator">=</span> goodsClient<span class="token punctuation">.</span><span class="token function">releaseStore</span><span class="token punctuation">(</span>orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><p>关闭订单</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code> <span class="token comment">//关闭订单</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span>  <span class="token function">closeOrder</span><span class="token punctuation">(</span><span class="token class-name">String</span> orderId<span class="token punctuation">)</span> <span class="token keyword">throws</span>  <span class="token class-name">Exception</span><span class="token punctuation">{</span>
+        <span class="token comment">//1.构建配置</span>
+        <span class="token class-name">MyConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//2.封装请求数据</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> requestParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;appid&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getAppID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;mch_id&quot;</span><span class="token punctuation">,</span>config<span class="token punctuation">.</span><span class="token function">getMchID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;out_trade_no&quot;</span><span class="token punctuation">,</span>orderId <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        requestParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;nonce_str&quot;</span><span class="token punctuation">,</span><span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateNonceStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//3.将map转xml串</span>
+        <span class="token class-name">String</span> reqeuestParamsXml <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">generateSignedXml</span><span class="token punctuation">(</span>requestParams<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//4.发请求</span>
+        <span class="token class-name">WXPayRequest</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WXPayRequest</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> resultXml <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">requestWithoutCert</span><span class="token punctuation">(</span><span class="token string">&quot;/pay/closeorder&quot;</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> reqeuestParamsXml<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>resultXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//5.将resultXml转map集合</span>
+        <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> resultMap <span class="token operator">=</span> <span class="token class-name">WXPayUtil</span><span class="token punctuation">.</span><span class="token function">xmlToMap</span><span class="token punctuation">(</span>resultXml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token keyword">return</span> resultMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;result_code&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/1/22</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/实战/商城/网页静态化技术.html" class="prev">
+          网页静态化技术
+        </a></span> <span class="next"><a href="/实战/商城/单点登录SSO.html">
+          单点登录SSO
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">微信支付</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-1-微信支付申请" class="toc-sidebar-link">1.1：微信支付申请</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-2-微信支付开发文档" class="toc-sidebar-link">1.2： 微信支付开发文档</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-3-调用统一下单接口-支付订单" class="toc-sidebar-link">1.3：调用统一下单接口  (支付订单)</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-4-二维码插件qrcode-js" class="toc-sidebar-link">1.4： 二维码插件QRcode.js</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-5-查询订单状态接口" class="toc-sidebar-link">1.5：查询订单状态接口</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-6-关闭订单接口" class="toc-sidebar-link">1.6：关闭订单接口</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_2-1-统一下单" class="toc-sidebar-link">2.1：统一下单</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#" class="toc-sidebar-link"></a></li></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#-5" class="toc-sidebar-link">/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#-5</a><ul class="toc-sidebar-sub-headers"></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">微信支付</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-1-微信支付申请" class="toc-sidebar-link">1.1：微信支付申请</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-2-微信支付开发文档" class="toc-sidebar-link">1.2： 微信支付开发文档</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-3-调用统一下单接口-支付订单" class="toc-sidebar-link">1.3：调用统一下单接口  (支付订单)</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-4-二维码插件qrcode-js" class="toc-sidebar-link">1.4： 二维码插件QRcode.js</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-5-查询订单状态接口" class="toc-sidebar-link">1.5：查询订单状态接口</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_1-6-关闭订单接口" class="toc-sidebar-link">1.6：关闭订单接口</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#_2-1-统一下单" class="toc-sidebar-link">2.1：统一下单</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#" class="toc-sidebar-link"></a></li></ul></li><li><a href="/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#-5" class="toc-sidebar-link">/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html#-5</a><ul class="toc-sidebar-sub-headers"></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/%E5%AE%9E%E6%88%98/%E5%95%86%E5%9F%8E/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <div title="网页静态化技术" class="option-box" style="padding-left:2px;text-align:center;"><a href="/实战/商城/网页静态化技术.html"><img src="/images/system/pre2.png" width="30px" class="nozoom"> <span class="show-txt">上一篇</span></a></div> <div title="单点登录SSO" class="option-box" style="padding-left:2px;text-align:center;"><a href="/实战/商城/单点登录SSO.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1712123086861" defer></script><script src="/assets/js/cg-4.js?v=1712123086861" defer></script><script src="/assets/js/cg-93.js?v=1712123086861" defer></script><script src="/assets/js/cg-1.js?v=1712123086861" defer></script><script src="/assets/js/cg-79.js?v=1712123086861" defer></script><script src="/assets/js/cg-app.js?v=1712123086861" defer></script>
+  </body>
+</html>

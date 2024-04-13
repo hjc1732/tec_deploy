@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SpringMVC文件上传下载及异常处理 | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="SpringMVC文件上传下载及异常处理">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html">
+    <meta name="twitter:title" content="SpringMVC文件上传下载及异常处理">
+    <meta name="twitter:url" content="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1712123086861" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-120.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-79.js?v=1712123086861" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1712123086861">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>SpringMVC</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sidebar-link">SpringMVC快速入门及解析</a></li><li><a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html" class="sidebar-link">SpringMVC的响应和请求</a></li><li><a href="/框架/Spring全家桶/SpringMVC/03_SpringMVC文件上传下载及异常处理.html" class="active sidebar-link">SpringMVC文件上传下载及异常处理</a></li><li><a href="/框架/Spring全家桶/SpringMVC/04_SSM整合案例.html" class="sidebar-link">SSM整合案例</a></li><li><a href="/框架/Spring全家桶/SpringMVC/05_SpringSecurity通用权限管理系统.html" class="sidebar-link">SpringSecurity通用权限管理系统</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="springmvc文件上传下载及异常处理"><a href="#springmvc文件上传下载及异常处理" class="header-anchor">#</a> SpringMVC文件上传下载及异常处理</h1> <p><strong>面试：</strong></p> <p><strong>文件上传的类MultipartFile     transferTo() 存文件</strong></p> <p><strong>全局异常处理： @ControllerAdvice 和 @ExceptionHandler</strong></p> <h2 id="一、springmvc文件上传"><a href="#一、springmvc文件上传" class="header-anchor">#</a> 一、<code>SpringMVC</code>文件上传</h2> <blockquote><p>文件上传客户端表单需要满足：</p> <ul><li>表单项type=“file”</li> <li>表单的提交方式是POST</li> <li>表单的enctype属性是多部分表单形式，及enctype=“multipart/form-data”</li></ul></blockquote> <h3 id="_1-1、环境搭建"><a href="#_1-1、环境搭建" class="header-anchor">#</a> 1.1、环境搭建</h3> <blockquote><ol><li><p>创建Maven Web工程</p></li> <li><p>导入坐标</p></li></ol></blockquote> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">&gt;</span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.qfedu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>01_springmvc_fileupload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>war<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-context<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-webmvc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>javax.servlet-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>javax.servlet.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>javax.servlet.jsp-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.3.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-io<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-io<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-fileupload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-fileupload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br></div></div><blockquote><ol start="3"><li>springmvc配置文件</li></ol></blockquote> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/beans<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/context<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>mvc</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/mvc<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.qfedu.controller<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>annotation-driven</span> <span class="token punctuation">/&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resources</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/js/**<span class="token punctuation">&quot;</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/js/<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resources</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/css/**<span class="token punctuation">&quot;</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/css/<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resources</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/img/**<span class="token punctuation">&quot;</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/img/<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewResolver<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>org.springframework.web.servlet.view.InternalResourceViewResolver<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>prefix<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/jsp/<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>suffix<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>.jsp<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment">&lt;!-- 配置文件上传解析器
+ 		这里的id一定要写，而且写法固定
+	--&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>multipartResolver<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>org.springframework.web.multipart.commons.CommonsMultipartResolver<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>defaultEncoding<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>utf-8<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>maxUploadSize<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>90000000000<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><blockquote><p>注意这里的文件上传解析器。</p> <ol start="4"><li>用于文件上传的页面</li></ol></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h2&gt;单文件上传&lt;/h2&gt;
+    &lt;form action=&quot;${pageContext.request.contextPath}/test/test1&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+        姓名&lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br/&gt;
+        文件&lt;input type=&quot;file&quot; name=&quot;upload&quot; /&gt;&lt;br/&gt;
+        &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;h2&gt;多文件上传&lt;/h2&gt;
+    &lt;form action=&quot;${pageContext.request.contextPath}/test/test2&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+        姓名&lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br/&gt;
+        文件1&lt;input type=&quot;file&quot; name=&quot;upload&quot; /&gt;&lt;br/&gt;
+        文件2&lt;input type=&quot;file&quot; name=&quot;upload&quot; /&gt;&lt;br/&gt;
+        文件3&lt;input type=&quot;file&quot; name=&quot;upload&quot; /&gt;&lt;br/&gt;
+        &lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><blockquote><ol start="5"><li>success.jsp</li></ol></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;success&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;success&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_1-2、单文件上传"><a href="#_1-2、单文件上传" class="header-anchor">#</a> 1.2、单文件上传</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+  * 单文件上传
+  */</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/test1&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">MultipartFile</span> upload<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> filename <span class="token operator">=</span> upload<span class="token punctuation">.</span><span class="token function">getOriginalFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    upload<span class="token punctuation">.</span><span class="token function">transferTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">&quot;D:/&quot;</span> <span class="token operator">+</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;success&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_1-3、多文件上传"><a href="#_1-3、多文件上传" class="header-anchor">#</a> 1.3、多文件上传</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+  * 多文件上传
+  */</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/test2&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">MultipartFile</span><span class="token punctuation">[</span><span class="token punctuation">]</span> upload<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file <span class="token operator">:</span> upload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> filename <span class="token operator">=</span> file<span class="token punctuation">.</span><span class="token function">getOriginalFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        file<span class="token punctuation">.</span><span class="token function">transferTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">&quot;D:/&quot;</span> <span class="token operator">+</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;success&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="二、springmvc文件下载"><a href="#二、springmvc文件下载" class="header-anchor">#</a> 二、<code>SpringMVC</code>文件下载</h2> <h3 id="_2-1、直接向response的输出流中写入对应的文件流"><a href="#_2-1、直接向response的输出流中写入对应的文件流" class="header-anchor">#</a> 2.1、直接向<code>response</code>的输出流中写入对应的文件流</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/download1&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">download1</span><span class="token punctuation">(</span><span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+    <span class="token comment">//获取响应流</span>
+    <span class="token class-name">ServletOutputStream</span> outputStream <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//读取文件</span>
+    <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token class-name">FileUtils</span><span class="token punctuation">.</span><span class="token function">readFileToByteArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">&quot;D:\\图片1.jpg&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//设置响应头 URLEncoder.encode()用来设置文件名编码，防止文件名乱码</span>
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">&quot;Content-Disposition&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;attachment;filename=&quot;</span> <span class="token operator">+</span> <span class="token class-name">URLEncoder</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">&quot;图片111.jpg&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    outputStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    outputStream<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    outputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="_2-2、使用responseentity-byte-来向前端返回文件"><a href="#_2-2、使用responseentity-byte-来向前端返回文件" class="header-anchor">#</a> 2.2、使用<code>ResponseEntity&lt;byte[]&gt;</code>来向前端返回文件</h3> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/download2&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token function">download2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+    <span class="token comment">//获取文件对象</span>
+    <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token class-name">FileUtils</span><span class="token punctuation">.</span><span class="token function">readFileToByteArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">&quot;D:\\图片1.jpg&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">HttpHeaders</span> headers<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;Content-Disposition&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;attachment;filename=&quot;</span> <span class="token operator">+</span> <span class="token class-name">URLEncoder</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">&quot;图片111.jpg&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> entity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span>headers<span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> entity<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="三、springmvc异常处理"><a href="#三、springmvc异常处理" class="header-anchor">#</a> 三、<code>SpringMVC</code>异常处理</h2> <h3 id="_3-1、异常处理思路"><a href="#_3-1、异常处理思路" class="header-anchor">#</a> 3.1、异常处理思路</h3> <blockquote><p>系统的<code>dao</code>、<code>service</code>、<code>controller</code>出现都通过<code>throws Exception</code>向上抛出，最后由<code>springmvc</code>前端控制器交由<strong>异常处理器</strong>进行异常处理。</p></blockquote> <p><img src="/assets/img/异常处理.dd416553.jpg" alt="异常处理"></p> <h3 id="_3-2、控制器异常处理方式-了解-重要性低"><a href="#_3-2、控制器异常处理方式-了解-重要性低" class="header-anchor">#</a> 3.2、控制器异常处理方式   了解，重要性低</h3> <blockquote><p>配置控制器异常处理，使用<code>@Controller+@ExceptionHandler</code>。</p></blockquote> <p>编写控制器类</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResultVO</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> code<span class="token punctuation">;</span>  <span class="token comment">//状态码  1000 成功  1001失败</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>   <span class="token comment">//提示信息</span>
+    <span class="token keyword">private</span> <span class="token class-name">Object</span> obj<span class="token punctuation">;</span>   <span class="token comment">//后端给前端返回的数据</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Controller</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/test&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestController</span> <span class="token punctuation">{</span>
+	<span class="token comment">/**
+	 	@ExceptionHandler用来定义异常处理，这个异常处理在控制器内部，只能处理控制器内部方法出现的异常;
+	 	@ExceptionHandler的参数是Throwable实现类的Class数组，可以填多个值，但是要加大括号
+	 */</span>
+      <span class="token comment">/**
+     * 处理本Controller中发生的异常，返回数据给前端
+     * @param e
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResultVO</span> <span class="token function">hanlderException</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>  <span class="token keyword">new</span> <span class="token class-name">ResultVO</span><span class="token punctuation">(</span><span class="token string">&quot;1001&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;系统繁忙稍后再试&quot;</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;index1&quot;</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">index1</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;success&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h3 id="_3-3、全局异常处理-面试-非常重要"><a href="#_3-3、全局异常处理-面试-非常重要" class="header-anchor">#</a> 3.3、全局异常处理   面试，非常重要</h3> <blockquote><p>控制器的异常处理只能处理控制器内部的异常，如果希望处理控制器抛出的所有异常而不希望在控制器内部处理，这就需要配置全局异常处理。配置全局异常处理，使用<code>@ControllerAdvice+@ExceptionHandler</code>。</p></blockquote> <h4 id="_3-3-1、在控制器中添加方法"><a href="#_3-3-1、在控制器中添加方法" class="header-anchor">#</a> 3.3.1、在控制器中添加方法</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/test2&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">&quot;出错了&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;success&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h4 id="_3-3-2、编写全局异常处理类"><a href="#_3-3-2、编写全局异常处理类" class="header-anchor">#</a> 3.3.2、编写全局异常处理类</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@ControllerAdvice</span>   
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebExceptionHandler</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 全局异常处理，处理Exception
+     */</span>
+     <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+   <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hanlderException</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>  <span class="token string">&quot;error&quot;</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+定义一个错误页面<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">&gt;</span>error<span class="token punctuation">.</span>jsp
+<span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">--</span>
+  <span class="token class-name">Created</span> by <span class="token class-name">IntelliJ</span> <span class="token class-name">IDEA<span class="token punctuation">.</span>
+  User</span><span class="token operator">:</span> <span class="token class-name">Administrator</span>
+  <span class="token class-name">Date</span><span class="token operator">:</span> <span class="token number">2022</span><span class="token operator">/</span><span class="token number">12</span><span class="token operator">/</span><span class="token number">30</span>
+  <span class="token class-name">Time</span><span class="token operator">:</span> <span class="token number">16</span><span class="token operator">:</span><span class="token number">40</span>
+  <span class="token class-name">To</span> change <span class="token keyword">this</span> template use <span class="token class-name">File</span> <span class="token operator">|</span> <span class="token class-name">Settings</span> <span class="token operator">|</span> <span class="token class-name">File</span> <span class="token class-name">Templates</span><span class="token punctuation">.</span>
+<span class="token operator">--</span><span class="token operator">%</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page contentType<span class="token operator">=</span><span class="token string">&quot;text/html;charset=UTF-8&quot;</span> language<span class="token operator">=</span><span class="token string">&quot;java&quot;</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+<span class="token generics"><span class="token punctuation">&lt;</span>html<span class="token punctuation">&gt;</span></span>
+<span class="token generics"><span class="token punctuation">&lt;</span>head<span class="token punctuation">&gt;</span></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>title<span class="token punctuation">&gt;</span></span><span class="token class-name">Title</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
+<span class="token generics"><span class="token punctuation">&lt;</span>body<span class="token punctuation">&gt;</span></span>
+  系统繁忙，稍后再试
+<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h3 id="_3-4、异常处理返回json数据"><a href="#_3-4、异常处理返回json数据" class="header-anchor">#</a> 3.4、异常处理返回JSON数据</h3> <h4 id="_3-4-1、修改全局异常处理类"><a href="#_3-4-1、修改全局异常处理类" class="header-anchor">#</a> 3.4.1、修改全局异常处理类</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResultVO</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> code<span class="token punctuation">;</span>  <span class="token comment">//状态码  1000 成功  1001失败</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>   <span class="token comment">//提示信息</span>
+    <span class="token keyword">private</span> <span class="token class-name">Object</span> obj<span class="token punctuation">;</span>   <span class="token comment">//后端给前端返回的数据</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token annotation punctuation">@ControllerAdvice</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebExceptionHandler</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 全局异常处理，处理Exception
+     * 返回JSON
+     */</span>
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResultVO</span> <span class="token function">hanlderException</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>  <span class="token keyword">new</span> <span class="token class-name">ResultVO</span><span class="token punctuation">(</span><span class="token string">&quot;1001&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;系统繁忙稍后再试&quot;</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h4 id="_3-4-2、发送请求的页面"><a href="#_3-4-2、发送请求的页面" class="header-anchor">#</a> 3.4.2、发送请求的页面</h4> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Index&lt;/title&gt;
+    &lt;script src=&quot;${pageContext.request.contextPath}/js/jquery-3.3.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#btn&quot;).click(function () {
+                //发送ajax请求
+                $.ajax({
+                    url: &quot;${pageContext.request.contextPath}/test/test2&quot;,
+                    data: {a:100},
+                    dataType: &quot;JSON&quot;,
+                    type: &quot;POST&quot;,
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        &lt;a href=&quot;${pageContext.request.contextPath}/test/test1&quot;&gt;测试控制器异常处理&lt;/a&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;a href=&quot;${pageContext.request.contextPath}/test/test2?a=100&quot;&gt;测试控制器全局处理&lt;/a&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;btn&quot; type=&quot;button&quot;&gt;测试全局异常处理，返回JSON&lt;/button&gt;
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/1/22</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html" class="prev">
+          SpringMVC的响应和请求
+        </a></span> <span class="next"><a href="/框架/Spring全家桶/SpringMVC/04_SSM整合案例.html">
+          SSM整合案例
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">SpringMVC文件上传下载及异常处理</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#一、springmvc文件上传" class="toc-sidebar-link">一、SpringMVC文件上传</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-1、环境搭建" class="toc-sidebar-link">1.1、环境搭建</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-2、单文件上传" class="toc-sidebar-link">1.2、单文件上传</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-3、多文件上传" class="toc-sidebar-link">1.3、多文件上传</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#二、springmvc文件下载" class="toc-sidebar-link">二、SpringMVC文件下载</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_2-1、直接向response的输出流中写入对应的文件流" class="toc-sidebar-link">2.1、直接向response的输出流中写入对应的文件流</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_2-2、使用responseentity-byte-来向前端返回文件" class="toc-sidebar-link">2.2、使用ResponseEntity&lt;byte[]&gt;来向前端返回文件</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#三、springmvc异常处理" class="toc-sidebar-link">三、SpringMVC异常处理</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-1、异常处理思路" class="toc-sidebar-link">3.1、异常处理思路</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-2、控制器异常处理方式-了解-重要性低" class="toc-sidebar-link">3.2、控制器异常处理方式   了解，重要性低</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-3、全局异常处理-面试-非常重要" class="toc-sidebar-link">3.3、全局异常处理   面试，非常重要</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-4、异常处理返回json数据" class="toc-sidebar-link">3.4、异常处理返回JSON数据</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">SpringMVC文件上传下载及异常处理</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#一、springmvc文件上传" class="toc-sidebar-link">一、SpringMVC文件上传</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-1、环境搭建" class="toc-sidebar-link">1.1、环境搭建</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-2、单文件上传" class="toc-sidebar-link">1.2、单文件上传</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_1-3、多文件上传" class="toc-sidebar-link">1.3、多文件上传</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#二、springmvc文件下载" class="toc-sidebar-link">二、SpringMVC文件下载</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_2-1、直接向response的输出流中写入对应的文件流" class="toc-sidebar-link">2.1、直接向response的输出流中写入对应的文件流</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_2-2、使用responseentity-byte-来向前端返回文件" class="toc-sidebar-link">2.2、使用ResponseEntity&lt;byte[]&gt;来向前端返回文件</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#三、springmvc异常处理" class="toc-sidebar-link">三、SpringMVC异常处理</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-1、异常处理思路" class="toc-sidebar-link">3.1、异常处理思路</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-2、控制器异常处理方式-了解-重要性低" class="toc-sidebar-link">3.2、控制器异常处理方式   了解，重要性低</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-3、全局异常处理-面试-非常重要" class="toc-sidebar-link">3.3、全局异常处理   面试，非常重要</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html#_3-4、异常处理返回json数据" class="toc-sidebar-link">3.4、异常处理返回JSON数据</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/03_SpringMVC%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <div title="SpringMVC的响应和请求" class="option-box" style="padding-left:2px;text-align:center;"><a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html"><img src="/images/system/pre2.png" width="30px" class="nozoom"> <span class="show-txt">上一篇</span></a></div> <div title="SSM整合案例" class="option-box" style="padding-left:2px;text-align:center;"><a href="/框架/Spring全家桶/SpringMVC/04_SSM整合案例.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1712123086861" defer></script><script src="/assets/js/cg-4.js?v=1712123086861" defer></script><script src="/assets/js/cg-120.js?v=1712123086861" defer></script><script src="/assets/js/cg-1.js?v=1712123086861" defer></script><script src="/assets/js/cg-79.js?v=1712123086861" defer></script><script src="/assets/js/cg-app.js?v=1712123086861" defer></script>
+  </body>
+</html>

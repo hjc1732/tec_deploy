@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SpringMVC快速入门及解析 | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="SpringMVC快速入门及解析">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html">
+    <meta name="twitter:title" content="SpringMVC快速入门及解析">
+    <meta name="twitter:url" content="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1712123086861" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-119.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-79.js?v=1712123086861" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1712123086861">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>SpringMVC</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="active sidebar-link">SpringMVC快速入门及解析</a></li><li><a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html" class="sidebar-link">SpringMVC的响应和请求</a></li><li><a href="/框架/Spring全家桶/SpringMVC/03_SpringMVC文件上传下载及异常处理.html" class="sidebar-link">SpringMVC文件上传下载及异常处理</a></li><li><a href="/框架/Spring全家桶/SpringMVC/04_SSM整合案例.html" class="sidebar-link">SSM整合案例</a></li><li><a href="/框架/Spring全家桶/SpringMVC/05_SpringSecurity通用权限管理系统.html" class="sidebar-link">SpringSecurity通用权限管理系统</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="springmvc快速入门及解析"><a href="#springmvc快速入门及解析" class="header-anchor">#</a> SpringMVC快速入门及解析</h1> <p><strong>SpringMVC执行流程？</strong></p> <p>**查找：前端控制器调用处理器映射器，根据url路径和设置的访问路径进行匹配，查找到相应的controller  **</p> <p><strong>执行：前端控制器调用处理器适配器，处理适配器调用controller，将controller的执行结果modelAndview     返回 给前端控制器</strong></p> <p><strong>返回：前端控制器调用视图解析器 ，根据 modelAndview找到相应的视图</strong></p> <p>​</p> <p><strong>200：成功</strong></p> <p><strong>404：资源不存在</strong></p> <p><strong>500:服务器内部错误</strong></p> <p><strong>400：参数错误</strong></p> <h2 id="一、springmvc概述及快速入门"><a href="#一、springmvc概述及快速入门" class="header-anchor">#</a> 一、SpringMVC概述及快速入门</h2> <h3 id="_1-1、概述"><a href="#_1-1、概述" class="header-anchor">#</a> 1.1、概述</h3> <p>springmvc是spring的一部分</p> <blockquote><p>SpringMVC是一种基于Java 的实现MVC设计模型的请求驱动类型的轻量级Web框架，属于SpringFrameWork的后续产品，已经融合在Spring中。</p> <p>SpringMVC已经成为目前最主流的MVC框架之一，并且随着Spring3.0的发布，全面超越Struts2，成为最优秀的MVC框架。它通过一套注解，让一个简单的Java类成为处理请求的控制器，而无须实现任何接口。同时它还支持RESTful编程风格的请求。</p> <p>Servlet 处理web请求，doGet()  doPost()  不能自定义方法处理请求，action</p> <p>基于Servlet，DispatcherServlet （前端控制器）</p></blockquote> <h3 id="_1-2、快速入门"><a href="#_1-2、快速入门" class="header-anchor">#</a> 1.2、快速入门</h3> <blockquote><p><strong>需求</strong>：客户端发起请求，服务器端接收请求，执行逻辑并进行视图跳转。</p> <p><strong>开发步骤</strong></p> <ol><li><p>创建Maven web项目并导入坐标；</p></li> <li><p>创建Controller类(类似于Servlet)和视图页面；</p></li> <li><p>使用注解配置Controller类中业务方法的映射地址；</p></li> <li><p>配置SpringMVC核心文件spring-mvc.xml；</p></li> <li><p>配置SpringMVC核心控制器DispatcherServlet；</p></li> <li><p>浏览器发起请求测试。</p></li></ol></blockquote> <h4 id="_1-2-1、创建maven-web项目并导入坐标"><a href="#_1-2-1、创建maven-web项目并导入坐标" class="header-anchor">#</a> 1.2.1、创建Maven web项目并导入坐标</h4> <blockquote><p>pom.xml</p></blockquote> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">&gt;</span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.qfedu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>01_springmvc_start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>war<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>01_springmvc_start Maven Webapp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- FIXME change it to the project's website --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>http://www.example.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-webmvc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>5.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>javax.servlet-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>javax.servlet.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>javax.servlet.jsp-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.3.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h4 id="_1-2-2、创建controller类和视图页面"><a href="#_1-2-2、创建controller类和视图页面" class="header-anchor">#</a> 1.2.2、创建Controller类和视图页面</h4> <blockquote><p>HelloController.java</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//指定这是一个控制器类</span>
+<span class="token annotation punctuation">@Controller</span>        
+<span class="token comment">//指定这个控制器的地址  /abc/hello</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/abc&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloController</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 在访问时要使用类上的RequestMapping中的路径和方法上的RequestMapping中的路径才能访问到该方法
+     * 如果在视图解析器中没有配置前缀和后缀，文件的路径和后缀不能省略
+     * 默认以转发的方式访问视图
+     * @return 视图的位置
+     */</span>
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/hello&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;/jsp/success.jsp&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><blockquote><p>在web目录下新建jsp目录，在该目录中创建success.jsp。</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;success&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;success&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="_1-2-3、配置springmvc核心文件spring-mvc-xml-别忘记"><a href="#_1-2-3、配置springmvc核心文件spring-mvc-xml-别忘记" class="header-anchor">#</a> 1.2.3、配置SpringMVC核心文件spring-mvc.xml       别忘记！</h4> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/beans<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/context<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+       <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+     <span class="token comment">&lt;!-- 配置包扫描 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>com.qfedu.controller<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="_1-2-4、配置springmvc前端控制器dispatcherservlet-别忘记-web-xml"><a href="#_1-2-4、配置springmvc前端控制器dispatcherservlet-别忘记-web-xml" class="header-anchor">#</a> 1.2.4、配置SpringMVC前端控制器DispatcherServlet   别忘记！   web.xml</h4> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://xmlns.jcp.org/xml/ns/javaee<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://xmlns.jcp.org/xml/ns/javaee
+         	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>3.1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 配置SpringMVC核心控制器，其本质上就是一个Servlet --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">&gt;</span></span>DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">&gt;</span></span>org.springframework.web.servlet.DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">&gt;</span></span>
+            <span class="token comment">&lt;!-- 配置SpringMVC配置文件使SpringMVC核心控制器能够加载 --&gt;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">&gt;</span></span>contextConfigLocation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">&gt;</span></span>classpath:spring-mvc.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- tomcat启动就加载 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>load-on-startup</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>load-on-startup</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">&gt;</span></span>DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">&gt;</span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-app</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h4 id="_1-2-5、浏览器发起请求测试"><a href="#_1-2-5、浏览器发起请求测试" class="header-anchor">#</a> 1.2.5、浏览器发起请求测试</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>http://localhost:8080/hello/hello
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="二、springmvc组件解析"><a href="#二、springmvc组件解析" class="header-anchor">#</a> 二、SpringMVC组件解析</h2> <h3 id="_2-1、springmvc执行流程-会自己描述-面试"><a href="#_2-1、springmvc执行流程-会自己描述-面试" class="header-anchor">#</a> 2.1、SpringMVC执行流程（会自己描述） 面试</h3> <p>查找：处理器映射器</p> <p>​          <strong>前端控制器调用处理器映射器，根据url路径和设置的访问路径进行匹配，查找到相应的controller</strong></p> <p>执行：处理器适配器</p> <p>​          **前端控制器调用处理器适配器，处理适配器调用controller，将controller的执行结果modelAndview返回给前端控制器 **</p> <p>​</p> <p>返回：视图解析器</p> <p>​      <strong>前端控制器调用视图解析器 ，根据 modelAndview找到相应的视图</strong> <img src="/assets/img/SpringMVC执行流程.f4898c6a.jpg" alt="SpringMVC执行流程"></p> <blockquote><ol><li><p>用户发送请求至前端控制器DispatcherServlet；</p></li> <li><p>DispatcherServlet收到请求调用HandlerMapping处理器映射器；</p></li> <li><p>处理器映射器找到具体的处理器 （controller）(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet；</p></li> <li><p>DispatcherServlet调用HandlerAdapter处理器适配器；</p></li> <li><p>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)；</p></li> <li><p>Controller执行完成返回ModelAndView；</p></li> <li><p>HandlerAdapter将Controller执行结果ModelAndView返回给DispatcherServlet；</p></li> <li><p>DispatcherServlet将ModelAndView传给ViewReslover视图解析器；</p></li> <li><p>ViewReslover解析后返回具体View；</p></li> <li><p>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）；</p></li> <li><p>DispatcherServlet响应用户。</p></li></ol></blockquote> <h3 id="_2-2、springmvc各组件简介"><a href="#_2-2、springmvc各组件简介" class="header-anchor">#</a> 2.2、SpringMVC各组件简介</h3> <h4 id="_2-2-1、前端控制器-dispatcherservlet-重要web-xml配置"><a href="#_2-2-1、前端控制器-dispatcherservlet-重要web-xml配置" class="header-anchor">#</a> 2.2.1、前端控制器  DispatcherServlet     重要web.xml配置</h4> <p>是SpringMVC象征或是标志</p> <blockquote><p>用户请求到达前端控制器，它就相当于MVC模式中的C，DispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet的存在降低了组件之间的耦合性。</p></blockquote> <h4 id="_2-2-2、处理器映射器handlermapping"><a href="#_2-2-2、处理器映射器handlermapping" class="header-anchor">#</a> 2.2.2、处理器映射器HandlerMapping</h4> <blockquote><p>HandlerMapping负责根据用户请求找到Handler即处理器(Controller)，SpringMVC提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，<strong>注解方式等</strong>。</p></blockquote> <h4 id="_2-2-3、处理器适配器handleradapter"><a href="#_2-2-3、处理器适配器handleradapter" class="header-anchor">#</a> 2.2.3、处理器适配器HandlerAdapter</h4> <blockquote><p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p></blockquote> <h4 id="_2-2-4、处理器handler-自己写的controller"><a href="#_2-2-4、处理器handler-自己写的controller" class="header-anchor">#</a> 2.2.4、处理器Handler      自己写的Controller</h4> <blockquote><p><strong>就是我们上面写的Controller</strong>，由DispatcherServlet把用户请求转发到Handler。由Handler 对具体的用户请求进行处理。</p></blockquote> <h4 id="_2-2-5、视图解析器viewresolver-重要-spring-mvc-xml配置"><a href="#_2-2-5、视图解析器viewresolver-重要-spring-mvc-xml配置" class="header-anchor">#</a> 2.2.5、视图解析器ViewResolver     重要 spring-mvc.xml配置</h4> <blockquote><p>ViewResolver负责将处理结果生成View视图，ViewResolver 首先根据逻辑视图名解析成物理视图名，即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p></blockquote> <h4 id="_2-2-6、视图view"><a href="#_2-2-6、视图view" class="header-anchor">#</a> 2.2.6、视图View</h4> <blockquote><p>SpringMVC框架提供了很多View视图类型的支持，包括：jsp、freemarker、Thymeleaf等。最常用的视图就是JSP。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由程序员根据业务需求开发具体的页面。</p></blockquote> <h2 id="三、springmvc注解解析-重点"><a href="#三、springmvc注解解析-重点" class="header-anchor">#</a> 三、SpringMVC注解解析  重点</h2> <h3 id="_3-1、-requestmapping-getmapping-postmapping"><a href="#_3-1、-requestmapping-getmapping-postmapping" class="header-anchor">#</a> 3.1、@RequestMapping     （ @GetMapping/@PostMapping ）</h3> <blockquote><p>作用：用于建立请求URL和处理请求类及方法之间的对应关系。</p> <p>给类或方法加上访问路径。</p> <p>位置：</p> <ul><li>类上，请求URL的第一级访问目录。此处不写的话，就相当于应用的根目录；</li> <li>方法上，请求URL的第二级访问目录，与类上的使用@RequestMapping标注的一级目录一起组成访问路径。</li></ul> <p>属性：</p> <ul><li>value：用于指请求的URL，它和path属性的作用是一样的；</li> <li>method：用于指定请求的方式；</li></ul></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/hello&quot;</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span><span class="token constant">POST</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;/jsp/success.jsp&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p>params：用于指定限制请求参数的条件，它支持简单的表达式，要求请求参数的key和value必须和配置的一模一样    ，了解</p> <p>例如：</p> <ul><li>params = {&quot;accountName&quot;}，表示请求参数必须有accountName</li> <li>params = {&quot;moeny!100&quot;}，表示请求参数中money不能是100</li></ul></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/hello&quot;</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span><span class="token constant">GET</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">&quot;username&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;/jsp/success.jsp&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p>如果限制请求的方式，可以使用如下注解进行地址映射：</p> <ol><li>@GetMapping(地址)，限制只接收get请求；     常用</li> <li>@PostMapping(地址)，限制只接收post请求。  常用</li></ol></blockquote> <h3 id="_3-2、-controller-重点"><a href="#_3-2、-controller-重点" class="header-anchor">#</a> 3.2、@Controller   重点</h3> <blockquote><p>指定这是一个控制器类，<strong>这个注解的作用和@Component作用是一样的</strong>，用来配置bean让Spring容器进行管理。配置了@Controller注解之后，需要在SpringMVC配置文件中配置包扫描：<code>&lt;context:component-scan /&gt;</code></p></blockquote> <h2 id="四、springmvc的xml配置解析-重点"><a href="#四、springmvc的xml配置解析-重点" class="header-anchor">#</a> 四、SpringMVC的XML配置解析   重点</h2> <blockquote><p><strong>配置视图解析器    配置在springmvc核心配置文件中配置</strong></p></blockquote> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewResolver<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>org.springframework.web.servlet.view.InternalResourceViewResolver<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 配置视图名称前缀 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>prefix<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/jsp/<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token comment">&lt;!-- 配置视图名称后缀 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>suffix<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>.jsp<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>修改HelloController中的方法</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+  * 配置视图解析器的前缀后缀之后，视图的写法
+  */</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/hello&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;success&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="五、转发和重定向"><a href="#五、转发和重定向" class="header-anchor">#</a> 五、转发和重定向</h2> <p>Servlet中 ，转发： request.getRequestDispatcher(&quot;服务器端路径&quot;).forward(request,response)</p> <p>​                     重定向： response.sendRedirect(&quot;客户端路径&quot;)   302</p> <blockquote><p>我们在Controller中写的方法，默认以转发的方式转发到相应名称的试图，如果希望明确配置转发和重定向，在视图名称前加上<code>forward:</code>或者<code>redirect:</code>。</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+  * 请求转发
+  */</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/hello1&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;forward:/jsp/success.jsp&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+  * 重定向 （路径和服务端路径写法类似）
+  */</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/hello2&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;redirect:/jsp/success.jsp&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/1/22</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html">
+          SpringMVC的响应和请求
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">SpringMVC快速入门及解析</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#一、springmvc概述及快速入门" class="toc-sidebar-link">一、SpringMVC概述及快速入门</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_1-1、概述" class="toc-sidebar-link">1.1、概述</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_1-2、快速入门" class="toc-sidebar-link">1.2、快速入门</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#二、springmvc组件解析" class="toc-sidebar-link">二、SpringMVC组件解析</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_2-1、springmvc执行流程-会自己描述-面试" class="toc-sidebar-link">2.1、SpringMVC执行流程（会自己描述） 面试</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_2-2、springmvc各组件简介" class="toc-sidebar-link">2.2、SpringMVC各组件简介</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#三、springmvc注解解析-重点" class="toc-sidebar-link">三、SpringMVC注解解析  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_3-1、-requestmapping-getmapping-postmapping" class="toc-sidebar-link">3.1、@RequestMapping     （ @GetMapping/@PostMapping ）</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_3-2、-controller-重点" class="toc-sidebar-link">3.2、@Controller   重点</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#四、springmvc的xml配置解析-重点" class="toc-sidebar-link">四、SpringMVC的XML配置解析   重点</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#五、转发和重定向" class="toc-sidebar-link">五、转发和重定向</a><ul class="toc-sidebar-sub-headers"></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">SpringMVC快速入门及解析</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#一、springmvc概述及快速入门" class="toc-sidebar-link">一、SpringMVC概述及快速入门</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_1-1、概述" class="toc-sidebar-link">1.1、概述</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_1-2、快速入门" class="toc-sidebar-link">1.2、快速入门</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#二、springmvc组件解析" class="toc-sidebar-link">二、SpringMVC组件解析</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_2-1、springmvc执行流程-会自己描述-面试" class="toc-sidebar-link">2.1、SpringMVC执行流程（会自己描述） 面试</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_2-2、springmvc各组件简介" class="toc-sidebar-link">2.2、SpringMVC各组件简介</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#三、springmvc注解解析-重点" class="toc-sidebar-link">三、SpringMVC注解解析  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_3-1、-requestmapping-getmapping-postmapping" class="toc-sidebar-link">3.1、@RequestMapping     （ @GetMapping/@PostMapping ）</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#_3-2、-controller-重点" class="toc-sidebar-link">3.2、@Controller   重点</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#四、springmvc的xml配置解析-重点" class="toc-sidebar-link">四、SpringMVC的XML配置解析   重点</a><ul class="toc-sidebar-sub-headers"></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html#五、转发和重定向" class="toc-sidebar-link">五、转发和重定向</a><ul class="toc-sidebar-sub-headers"></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/%E6%A1%86%E6%9E%B6/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/SpringMVC/01_SpringMVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%8F%8A%E8%A7%A3%E6%9E%90.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <!----> <div title="SpringMVC的响应和请求" class="option-box" style="padding-left:2px;text-align:center;"><a href="/框架/Spring全家桶/SpringMVC/02_SpringMVC的响应和请求.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1712123086861" defer></script><script src="/assets/js/cg-4.js?v=1712123086861" defer></script><script src="/assets/js/cg-119.js?v=1712123086861" defer></script><script src="/assets/js/cg-1.js?v=1712123086861" defer></script><script src="/assets/js/cg-79.js?v=1712123086861" defer></script><script src="/assets/js/cg-app.js?v=1712123086861" defer></script>
+  </body>
+</html>

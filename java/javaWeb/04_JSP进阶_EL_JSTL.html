@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JSP进阶ELJSTL | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="JSP进阶ELJSTL">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html">
+    <meta name="twitter:title" content="JSP进阶ELJSTL">
+    <meta name="twitter:url" content="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1712123086861" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-113.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-79.js?v=1712123086861" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1712123086861">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>javaWeb</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javaWeb/01_Web开发基础.html" class="sidebar-link">Web开发基础</a></li><li><a href="/java/javaWeb/02_Servlet.html" class="sidebar-link">Servlet</a></li><li><a href="/java/javaWeb/03_JSP入门_Cookie_Session.html" class="sidebar-link">JSP入门CookieSession</a></li><li><a href="/java/javaWeb/04_JSP进阶_EL_JSTL.html" class="active sidebar-link">JSP进阶ELJSTL</a></li><li><a href="/java/javaWeb/05_Filter.html" class="sidebar-link">Filter</a></li><li><a href="/java/javaWeb/06_文件上传.html" class="sidebar-link">文件上传</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="jsp进阶-el-jstl"><a href="#jsp进阶-el-jstl" class="header-anchor">#</a> JSP进阶_EL_JSTL</h1> <p><strong>JSP常用的内置对象</strong></p> <p><strong>response 响应对象</strong></p> <p><strong>out  输出</strong></p> <p><strong>pageContext  页面域 getAttribute()   setAttribute()</strong></p> <p><strong>request  请求域  获取项目访问路径 getContextPath()   getAttribute()   setAttribute()   请求转发</strong></p> <p><strong>session  会话域   getAttribute()  setAttribute()   invalidate()</strong></p> <p>**application 应用域  **</p> <p><strong>梳理：虽然pageContext功能强大，但不如直接用相关内置对象方便</strong></p> <p><strong>请求域: request  放setAttribute()  取 getAttribute</strong></p> <p><strong>会话域: session  放setAttribute()  取 getAttribute</strong></p> <p><strong>应用域: application  放setAttribute()  取 getAttribute</strong></p> <p><strong>在EL中pageContext才用的较多</strong></p> <p><strong>include指令静态包含，include标签是动态包含</strong></p> <p><strong>el表达式: 取数并输出,难点如何从集合中取得数据</strong></p> <p>​    <strong>常用 ${pageContext.request.contextPath}</strong></p> <p><strong>jst核心标签库 : c:if   c:choose c:forEach</strong></p> <p><strong>MVC : V  视图  JSP html</strong></p> <p>​          <strong>C 控制器  Servlet</strong></p> <p>​          <strong>M 模型   Bean</strong></p> <p><strong>三层架构：</strong></p> <p><strong>WEB层  controller</strong></p> <p><strong>业务层  service    --&gt;事务控制在service层</strong></p> <p><strong>数据层  dao</strong></p> <h2 id="一、jsp指令"><a href="#一、jsp指令" class="header-anchor">#</a> 一、JSP指令</h2> <blockquote><p>JSP指令用来设置与整个JSP页面相关的属性。</p> <p>语法格式：<code>指令格式：&lt;%@ 指令名 attr1=&quot;&quot; attr2=&quot;&quot; %&gt;</code>。</p> <p>一般都会把JSP指令放到JSP文件的最上方，但这不是必须的。</p> <p>常用指令：</p> <ul><li><p><code>page</code>：定义页面的依赖属性，比如脚本语言、error页面、缓存需求等等；</p></li> <li><p><code>include</code>：包含其他文件；</p></li> <li><p><code>taglib</code>：引入标签库的定义，可以是自定义标签。     jstl核心标签库</p></li></ul></blockquote> <h3 id="_1-1、page指令"><a href="#_1-1、page指令" class="header-anchor">#</a> 1.1、page指令</h3> <blockquote><p>page指令是最为常用的指定，也是属性最多的属性，page指令没有必须属性，都是可选属性，例如<code>&lt;%@page %&gt;</code>，没有给出任何属性也是可以的。</p> <p>关于pageEncoding和contentType：</p> <ul><li>pageEncoding  少用
+<ul><li>指定当前JSP页面的编码</li> <li>这个编码是给服务器 tomcat看的，服务器需要知道当前JSP使用的编码，不然服务器无法正确把JSP编译成java文件       jsp本质就是servlet</li> <li>这个编码只需要与真实的页面编码一致即可</li></ul></li> <li><strong>contentType   常用</strong> <ul><li><strong>设置响应字符流的编码</strong></li> <li><strong>设置content-type响应头</strong></li></ul></li> <li>无论是page指令的pageEncoding还是contentType，它们的默认值都是ISO-8859-1，ISO-8859-1是无法显示中文的，所以JSP页面中存在中文的话，一定要设置这两个属性</li> <li>两者关系
+<ul><li>当pageEncoding和contentType只出现一个时，那么另一个的值与出现的值相同。</li> <li>如果两个都不出现，那么两个属性的值都是ISO-8859-1。</li></ul></li></ul> <p>import属性：对应java代码中的import语句，用来导入包。</p></blockquote> <h3 id="_1-2、include指令"><a href="#_1-2、include指令" class="header-anchor">#</a> 1.2、include指令</h3> <blockquote><ul><li>include指令表示静态包含，即目的是把多个JSP合并成一个java文件。</li> <li>include指令只有一个属性：file，指定要包含的页面</li> <li>a.jsp页面中使用include指令包含了b.jsp，那么在编译a.jsp时，会把两个文件合并成一个文件再编译成.java。</li></ul></blockquote> <h3 id="_1-3、taglib指令-jstl核心标签库-分支-循环"><a href="#_1-3、taglib指令-jstl核心标签库-分支-循环" class="header-anchor">#</a> 1.3、taglib指令     -----&gt;    jstl核心标签库     分支 循环</h3> <blockquote><p>学习jstl标签使用，后面再讲</p></blockquote> <h2 id="二、jsp九大内置对象-重点"><a href="#二、jsp九大内置对象-重点" class="header-anchor">#</a> 二、JSP九大内置对象（重点）</h2> <h3 id="_2-1、简要说明"><a href="#_2-1、简要说明" class="header-anchor">#</a> 2.1、简要说明</h3> <blockquote><p>JSP内置对象：在JSP中无需创建就可以使用的9个对象。</p> <p>九大内置对象如下：</p> <ul><li><code>out(JspWriter)</code>：类似与response.getWriter()，用来向客户端发送文本数据</li> <li><code>config(ServletConfig)</code>：对应”真身”中的ServletConfig    了解</li> <li><code>page(当前JSP的真身类型)</code>：当前JSP页面的“this”，即当前对象  了解</li> <li><code>pageContext(PageContext)</code>：页面上下文对象，它是最后一个没讲的域对象   <strong>重点</strong></li> <li><code>exception(Throwable)</code>：只有在错误页面中可以使用这个对象   了解</li> <li><code>request(HttpServletRequest)</code>：即HttpServletRequest类的对象 <strong>重点</strong></li> <li><code>response(HttpServletResponse)</code>：即HttpServletResponse类的对象 <strong>重点  （jsp页面中主要是重定向）</strong></li> <li><code>application(ServletContext)</code>：即ServletContext类的对象 <strong>重点，但少用</strong></li> <li><code>session(HttpSession)</code>：即HttpSession类的对象，不是每个JSP页面中都可以使用，如果在某个JSP页面中设置<code>&lt;%@page session=“false”%&gt;</code>，说明这个页面不能使用session   <strong>重点</strong></li></ul> <p>使用情况</p> <ul><li>极少使用：config、page、exception</li> <li>不是每个JSP页面都可以使用：exception、session</li></ul></blockquote> <h3 id="_2-2、pagecontext"><a href="#_2-2、pagecontext" class="header-anchor">#</a> 2.2、pageContext</h3> <blockquote><p>主要功能：</p> <ul><li>域对象功能    页面域</li> <li>代理其它域对象功能   （请求域，会话域，应用域）</li> <li>获取其他内置对象</li></ul></blockquote> <h4 id="_2-2-1、域对象功能-重点"><a href="#_2-2-1、域对象功能-重点" class="header-anchor">#</a> 2.2.1、域对象功能  重点</h4> <blockquote><p>表示当前页面
+和其他域对象一样，他们都有共同的方法：</p> <ul><li><strong><code>void setAttribute(String name, Object value)</code></strong></li> <li><strong><code>Object getAttribute(String name)</code></strong></li> <li><code>void removeAttribute(String name)</code></li></ul></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;测试Page域对象&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+    	//在page域中存放数据
+        pageContext.setAttribute(&quot;name&quot;, &quot;zhangsan&quot;);
+    %&gt;
+
+    &lt;%
+    	//从page域中获取数据
+        System.out.println(pageContext.getAttribute(&quot;name&quot;));
+    %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h4 id="_2-2-2、代理其他域对象-了解"><a href="#_2-2-2、代理其他域对象-了解" class="header-anchor">#</a> 2.2.2、代理其他域对象  了解</h4> <blockquote><p>可以使用pageContext向request、session、application对象中存取数据，“一个顶四个”</p> <p><code>void setAttribute(String name, Object value, int scope)</code>：在指定范围中添加数据</p> <p><code>Object getAttribute(String name, int scope)</code>：获取指定范围的数据</p> <p><code>void removeAttribute(String name, int scope)</code>：移除指定范围的数据</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code>pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;X&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  \\向页面域中存数据
+pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;XX&quot;</span><span class="token punctuation">,</span> <span class="token class-name">PageContext</span><span class="token punctuation">.</span><span class="token constant">REQUEST_SCOPE</span><span class="token punctuation">)</span><span class="token punctuation">;</span> \\向请求域存数据
+pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;XXX&quot;</span><span class="token punctuation">,</span> <span class="token class-name">PageContext</span><span class="token punctuation">.</span><span class="token constant">SESSION_SCOPE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  \\会话
+pageContext<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;XXXX&quot;</span><span class="token punctuation">,</span> <span class="token class-name">PageContext</span><span class="token punctuation">.</span><span class="token constant">APPLICATION_SCOPE</span><span class="token punctuation">)</span><span class="token punctuation">;</span> \\应用域
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p>创建Servlet</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;MServlet&quot;</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">&quot;/MServlet&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//获取Session</span>
+        <span class="token class-name">HttpSession</span> session <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//在Session域中存放数据</span>
+        session<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;lisi&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doGet</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><blockquote><p>创建测试的JSP</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        //通过page域从session中获取数据
+        Object name = pageContext.getAttribute(&quot;name&quot;, PageContext.SESSION_SCOPE);
+        System.out.println(name);
+    %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><blockquote><p><code>Object findAttribute(String name)</code>：依次在<code>page、request、session、application</code>范围查找名称为name的数据，如果找到就停止查找。这说明在这个范围内有相同名称的数据，那么page范围的优先级最高</p> <p><strong>findAttribute() 可以不加域范围</strong></p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;
+    pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;%
+	
+		pageContext.setAttribute(&quot;key&quot;, &quot;page_value&quot;);
+		request.setAttribute(&quot;key&quot;, &quot;request_value&quot;);
+		session.setAttribute(&quot;key&quot;, &quot;session_value&quot;);
+		application.setAttribute(&quot;key&quot;, &quot;app_value&quot;);
+	%&gt;
+	
+	&lt;%
+    	//全域查找
+		String value = (String)pageContext.findAttribute(&quot;key&quot;);
+		out.print(value);
+	%&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h4 id="_2-2-3、获取其他内置对象-了解"><a href="#_2-2-3、获取其他内置对象-了解" class="header-anchor">#</a> 2.2.3、获取其他内置对象   了解</h4> <blockquote><p>一个pageContext对象等于所有内置对象，即1个当9个。这是因为可以使用pageContext对象获取其它8个内置对象。</p> <p><code>JspWriter getOut()</code>：获取out内置对象</p> <p><code>ServletConfig getServletConfig()</code>：获取config内置对象</p> <p><code>Object getPage()</code>：获取page内置对象</p> <p><code>ServletRequest getRequest()</code>：获取request内置对象</p> <p><code>ServletResponse getResponse()</code>：获取response内置对象</p> <p><code>HttpSession getSession()</code>：获取session内置对象</p> <p><code>ServletContext getServletContext()</code>：获取application内置对象</p> <p><code>Exception getException()</code>：获取exception内置对象</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%                         
+    	//获取application对象    ServletContext.getRealPath(&quot;/&quot;)    requestServletContext.getContextPath()                         
+        System.out.println(pageContext.getServletContext().getContextPath());
+    %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="三、jsp动作标签-了解"><a href="#三、jsp动作标签-了解" class="header-anchor">#</a> 三、JSP动作标签（了解）</h2> <blockquote><p>动作标签的作用是用来简化Java脚本的，JSP动作标签是JavaWeb内置的动作标签，它们是已经定义好的动作标签，我们可以拿来直接使用。</p></blockquote> <h3 id="_3-1、include标签"><a href="#_3-1、include标签" class="header-anchor">#</a> 3.1、include标签</h3> <blockquote><p>语法：<code>&lt;jsp:include page=&quot;相对URL地址&quot; /&gt;</code></p> <p>作用：包含其它JSP页面</p> <p>与include指令区别：</p> <ul><li>include指令是在编译级别完成的包含，即把当前JSP和被包含的JSP合并成一个JSP，然后再编译成一个Servlet；</li> <li>include动作标签是在运行级别完成的包含，即当前JSP和被包含的JSP都会各自生成Servlet，然后在执行当前JSP的Servlet时完成包含另一个JSP的Servlet。它与RequestDispatcher的include()方法是相同的。</li></ul> <p>被包含的JSP：a.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;11111111111&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><blockquote><p>b.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;jsp:include page=&quot;a.jsp&quot; /&gt;
+    &lt;p&gt;222222222222&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_3-2、forward"><a href="#_3-2、forward" class="header-anchor">#</a> 3.2、forward</h3> <blockquote><p>forward标签的作用是请求转发！forward标签的作用与<code>RequestDispatcher.forward()</code>方法相同</p> <p>page属性</p></blockquote> <h2 id="四、el表达式-重点"><a href="#四、el表达式-重点" class="header-anchor">#</a> 四、EL表达式  重点</h2> <h3 id="_4-1、概述"><a href="#_4-1、概述" class="header-anchor">#</a> 4.1、概述</h3> <blockquote><p>EL：Expression Language，表达式语言。在JSP页面中可以直接使用，从JSP2.0开始，代替JSP脚本，非Java开发人员也可以使用。</p></blockquote> <h3 id="_4-2、el表达式使用"><a href="#_4-2、el表达式使用" class="header-anchor">#</a> 4.2、EL表达式使用</h3> <blockquote><ul><li><p>用于替换作用域对象<code>.getAttribute(&quot;name&quot;)</code>, 并将从域中获取的数据进行显示；</p></li> <li><p>EL用来代替<code>&lt;%=...%&gt;</code>，<code>&lt;%=...%&gt;</code>代表输出。</p> <p>EL表达式：取数并输出</p></li></ul></blockquote> <h4 id="_4-2-1、el表达式应用-获取基本类型、字符串"><a href="#_4-2-1、el表达式应用-获取基本类型、字符串" class="header-anchor">#</a> 4.2.1、EL表达式应用（获取基本类型、字符串）</h4> <blockquote><p>类JSP(模板引擎技术，Thymeleaf)</p> <p><code>${scope.name}</code>获取具体某个作用域中的数据；</p> <p><code>${name}</code>获取作用域中的数据，逐级查找（pageContext、request、session、application）</p> <p>EL和JSP脚本的区别</p> <ul><li><code>&lt;%=request.getAttribute() %&gt;</code> 没有找到返回null</li> <li><code>${requestScope.name}</code>没找到返回&quot;&quot;</li></ul></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;el初步&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        //在request域总存放数据 String
+        pageContext.setAttribute(&quot;name&quot;, &quot;Bob&quot;);
+        request.setAttribute(&quot;name&quot;, &quot;Zhangsan&quot;);
+        request.setAttribute(&quot;age&quot;, 10);
+        session.setAttribute(&quot;name&quot;, &quot;Jim&quot;);
+        application.setAttribute(&quot;name&quot;, &quot;Lucy&quot;);
+    %&gt;
+
+    &lt;%-- 使用EL表达式获取某个域中的数据并在网页上显示
+        作用域 xxxScope
+     --%&gt;
+    &lt;p&gt;${requestScope.name}&lt;/p&gt;
+    &lt;p&gt;${requestScope.age}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;%--
+        全域查找
+            如果没有限定xxxScope，会按照pageContext,request,session,application的顺序进行查找
+     --%&gt;
+    &lt;p&gt;${name}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;%--
+        JSP脚本和EL表达式的区别
+     --%&gt;
+    &lt;p&gt;&lt;%=request.getAttribute(&quot;abc&quot;)%&gt;&lt;/p&gt;
+    &lt;p&gt;${requestScope.abc}&lt;/p&gt;
+    &lt;hr/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h4 id="_4-2-2、el表达式应用-获取引用类型-重点"><a href="#_4-2-2、el表达式应用-获取引用类型-重点" class="header-anchor">#</a> 4.2.2、EL表达式应用（获取引用类型）  重点</h4> <blockquote><p>使用EL获取作用域中的对象调用属性时，只能访问对象的get方法，必须遵守命名规范定义</p> <p>创建实体类</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 表示Person的实体类
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> age<span class="token punctuation">;</span>
+
+	<span class="token comment">//set,get</span>
+    <span class="token comment">//toString</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><blockquote><p>EL表达式演示</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page import=&quot;com.qf.entity.Person&quot; %&gt;
+&lt;%@ page import=&quot;java.util.List&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@ page import=&quot;java.util.Map&quot; %&gt;
+&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;el表达式处理复杂类型&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        Person p = new Person();
+        p.setId(100);
+        p.setName(&quot;Tom&quot;);
+        p.setAge(20);
+
+        Person p1 = new Person();
+        p1.setId(200);
+        p1.setName(&quot;zs&quot;);
+        p1.setAge(21);
+        //将Person对象存放在域当中
+        request.setAttribute(&quot;person&quot;, p);
+
+        int[] arr = {1, 2, 100, 50};
+        request.setAttribute(&quot;arr&quot;, arr);
+
+        List&lt;String&gt; names = new ArrayList&lt;&gt;();
+        names.add(&quot;zs&quot;);
+        names.add(&quot;ls&quot;);
+        names.add(&quot;ww&quot;);
+        request.setAttribute(&quot;names&quot;, names);
+
+        List&lt;Person&gt; persons = new ArrayList&lt;&gt;();
+        persons.add(p);
+        persons.add(p1);
+        request.setAttribute(&quot;persons&quot;, persons);
+
+        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+        map.put(&quot;name&quot;, &quot;zs&quot;);
+        map.put(&quot;addr&quot;, &quot;qd&quot;);
+        request.setAttribute(&quot;map&quot;, map);
+    %&gt;
+    &lt;%--
+        通过EL表达式在页面上显示对象中的属性
+        前提：属性要有对应的set和get方法
+     --%&gt;
+    &lt;p&gt;${requestScope.person.id}&lt;/p&gt;
+    &lt;p&gt;${requestScope.person.name}&lt;/p&gt;
+    &lt;p&gt;${requestScope.person.age}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;%--
+        int[]
+            1 2 100 1000
+        List&lt;String&gt;
+            &quot;111&quot; &quot;222&quot; &quot;333&quot;
+        List&lt;Person&gt;
+        Map&lt;String, Object&gt;
+    --%&gt;
+    &lt;%--
+        通过EL表达式在页面上显示数组中的元素
+    --%&gt;
+    &lt;p&gt;${requestScope.arr[3]}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;%--
+        通过EL表达式在页面上显示集合中的元素，集合中存放的是简单类型（基本数据类型 + String）
+    --%&gt;
+    &lt;p&gt;${names[2]}&lt;/p&gt;
+    &lt;hr/&gt;
+
+    &lt;%--
+        通过EL表达式在页面上显示集合(List, Map)中的元素，集合中存放的是复杂类型（除了String类型之外的引用数据类型）
+    --%&gt;
+    &lt;p&gt;${persons[0].id}&lt;/p&gt;
+    &lt;p&gt;${persons[0].name}&lt;/p&gt;
+    &lt;p&gt;${persons[0].age}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;p&gt;${map.name}&lt;/p&gt;
+    &lt;p&gt;${map.addr}&lt;/p&gt;
+    &lt;p&gt;${map[&quot;addr&quot;]}&lt;/p&gt;
+    &lt;hr/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br></div></div><p><strong>总结： 取List、map或数组，可以用 ${xx[]} list和数组可以传下标，map可以传key</strong></p> <p>​             当然，list和map和set也可以用自身的方法取</p> <h3 id="_4-3、el表达式运算符"><a href="#_4-3、el表达式运算符" class="header-anchor">#</a> 4.3、EL表达式运算符</h3> <p><strong>empty 重点，常用</strong></p> <p><strong>返回值是true或false</strong></p> <p><strong>说明:true： 1 null为true</strong></p> <p>​                     <strong>2空串为true</strong></p> <p>​                    <strong>3 List中无元素，也为true</strong></p> <blockquote><table><thead><tr><th style="text-align:left;"><strong>操作符</strong></th> <th style="text-align:left;"><strong>描述</strong></th></tr></thead> <tbody><tr><td style="text-align:left;">.</td> <td style="text-align:left;">访问一个Bean属性或者一个映射条目</td></tr> <tr><td style="text-align:left;">[]</td> <td style="text-align:left;">访问一个数组或者集合的元素</td></tr> <tr><td style="text-align:left;">+</td> <td style="text-align:left;">加</td></tr> <tr><td style="text-align:left;">-</td> <td style="text-align:left;">减或负</td></tr> <tr><td style="text-align:left;">*</td> <td style="text-align:left;">乘</td></tr> <tr><td style="text-align:left;">/ or div</td> <td style="text-align:left;">除</td></tr> <tr><td style="text-align:left;">% or mod</td> <td style="text-align:left;">取模</td></tr> <tr><td style="text-align:left;">== or eq</td> <td style="text-align:left;">测试是否相等</td></tr> <tr><td style="text-align:left;">!= or ne</td> <td style="text-align:left;">测试是否不等</td></tr> <tr><td style="text-align:left;">&lt; or lt</td> <td style="text-align:left;">测试是否小于</td></tr> <tr><td style="text-align:left;">&gt; or gt</td> <td style="text-align:left;">测试是否大于</td></tr> <tr><td style="text-align:left;">&lt;= or le</td> <td style="text-align:left;">测试是否小于等于</td></tr> <tr><td style="text-align:left;">&gt;= or ge</td> <td style="text-align:left;">测试是否大于等于</td></tr> <tr><td style="text-align:left;">&amp;&amp; or and</td> <td style="text-align:left;">测试逻辑与</td></tr> <tr><td style="text-align:left;">|| or or</td> <td style="text-align:left;">测试逻辑或</td></tr> <tr><td style="text-align:left;">! or not</td> <td style="text-align:left;">测试取反</td></tr> <tr><td style="text-align:left;">empty</td> <td style="text-align:left;">测试是否空值</td></tr></tbody></table></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;el_运算符&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        request.setAttribute(&quot;num&quot;, 15);
+        request.setAttribute(&quot;name&quot;, &quot;&quot;);
+    %&gt;
+
+    &lt;%-- el运算符 --%&gt;
+    &lt;p&gt;${num + 1}&lt;/p&gt;
+    &lt;p&gt;${num - 1}&lt;/p&gt;
+    &lt;p&gt;${num * 10}&lt;/p&gt;
+    &lt;p&gt;${num / 10}&lt;/p&gt;
+    &lt;p&gt;${num div 10}&lt;/p&gt;
+    &lt;p&gt;${num % 3}&lt;/p&gt;
+    &lt;p&gt;${num mod 3}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;p&gt;${num == 15}&lt;/p&gt;
+    &lt;p&gt;${num eq 15}&lt;/p&gt; &lt;%-- eq equals --%&gt;
+    &lt;p&gt;${num != 15}&lt;/p&gt;
+    &lt;p&gt;${num ne 15}&lt;/p&gt;&lt;%-- ne not equals --%&gt;
+    &lt;p&gt;${num lt 20}&lt;/p&gt;&lt;%-- lt less than --%&gt;
+    &lt;p&gt;${num gt 20}&lt;/p&gt;&lt;%-- gt great than --%&gt;
+    &lt;hr/&gt;
+    &lt;p&gt;${true or false}&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;p&gt;${empty name}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><blockquote><p>关于<code>empty</code>关键字</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;% 
+	String s1=&quot;&quot;;
+    pageContext.setAttribute(&quot;s1&quot;, s1);
+    String s2=null;
+    pageContext.setAttribute(&quot;s2&quot;, s2);
+    String s3=&quot;abcdefg&quot;;
+    pageContext.setAttribute(&quot;s3&quot;, s3);
+    List list1 = new ArrayList();
+    pageContext.setAttribute(&quot;list1&quot;, list1);
+%&gt;
+&lt;!-- empty关键只要内容是&quot;空&quot;就返回true --&gt;
+${empty s1}&lt;br&gt;    
+${empty s2}&lt;br&gt;
+${empty s3}&lt;br&gt;
+${empty list1}&lt;br&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="_4-4、el的隐式对象"><a href="#_4-4、el的隐式对象" class="header-anchor">#</a> 4.4、EL的隐式对象</h3> <p>pageContext</p> <blockquote><p>EL 表达式语言定义了11个隐式对象</p> <table><thead><tr><th style="text-align:left;"><strong>隐含对象</strong></th> <th style="text-align:left;"><strong>描述</strong></th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>pageScope</strong></td> <td style="text-align:left;"><strong>page作用域</strong>          重点     对标jsp中的内置对象pageContext</td></tr> <tr><td style="text-align:left;"><strong>requestScope</strong></td> <td style="text-align:left;">**request作用域 **  重点       对标jsp.....内置对象request</td></tr> <tr><td style="text-align:left;"><strong>sessionScope</strong></td> <td style="text-align:left;">**session作用域 **  重点                         内置对象 session</td></tr> <tr><td style="text-align:left;"><strong>applicationScope</strong></td> <td style="text-align:left;"><strong>application作用域</strong>  重点                   内置对象 application</td></tr> <tr><td style="text-align:left;"><strong>param</strong></td> <td style="text-align:left;">request对象的参数，字符串</td></tr> <tr><td style="text-align:left;">paramValues</td> <td style="text-align:left;">request对象的参数，字符串集合</td></tr> <tr><td style="text-align:left;"><strong>header</strong></td> <td style="text-align:left;">HTTP信息头，字符串</td></tr> <tr><td style="text-align:left;">headerValues</td> <td style="text-align:left;">HTTP信息头，字符串集合</td></tr> <tr><td style="text-align:left;">initParam</td> <td style="text-align:left;">上下文初始化参数</td></tr> <tr><td style="text-align:left;"><strong>cookie</strong></td> <td style="text-align:left;">Cookie值</td></tr> <tr><td style="text-align:left;"><strong>pageContext</strong></td> <td style="text-align:left;"><strong>当前页面的pageContext域对象    pageContext.request.contextPath</strong></td></tr></tbody></table></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%--
+        访问服务器某个位置的时候
+        协议://主机名:端口  http://localhost:8080
+        项目名：在实际开发中不能写死 - “动”
+        资源的位置
+    --%&gt;
+    &lt;%--&lt;a href=&quot;/el_jstl/loginServlet?username=bob&quot;&gt;登录&lt;/a&gt;--%&gt;
+    &lt;a href=&quot;${pageContext.request.contextPath}/loginServlet?username=bob&quot;&gt;登录&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><blockquote><p>使用EL表达式修改登录案例</p> <p>login.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;登录&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;%
+    String errorMsg = (String)request.getAttribute(&quot;errorMsg&quot;);
+    if(errorMsg != null) {
+%&gt;
+    &lt;p style=&quot;color: red;&quot;&gt;${errorMsg}&lt;/p&gt;
+&lt;%
+    }
+%&gt;
+&lt;form action=&quot;${pageContext.request.contextPath}/LoginServlet&quot; method=&quot;post&quot;&gt;
+    &lt;fieldset style=&quot;width: 300px;&quot;&gt;
+        &lt;legend&gt;用户登录&lt;/legend&gt;
+        &lt;p&gt;
+            &lt;label&gt;账号&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入用户名&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;密码&lt;/label&gt;
+            &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;请输入密码&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;验证码&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;code&quot; placeholder=&quot;请输入验证码&quot; /&gt;
+            &lt;img src=&quot;${pageContext.request.contextPath}/CodeServlet&quot; alt=&quot;验证码&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+            &lt;button type=&quot;reset&quot;&gt;重置&lt;/button&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><blockquote><p>success.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;success&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        String username = (String) session.getAttribute(&quot;username&quot;);
+        if(username != null) {
+    %&gt;
+    &lt;p&gt;欢迎${username}&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;${pageContext.request.contextPath}/LogoutServlet&quot;&gt;注销&lt;/a&gt;&lt;/p&gt;
+    &lt;%
+        } else {
+    %&gt;
+    &lt;p&gt;您还没有登录，请先&lt;a href=&quot;${pageContext.request.contextPath}/login.jsp&quot;&gt;登录&lt;/a&gt;&lt;/p&gt;
+    &lt;%
+        }
+    %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="五、jstl-重点"><a href="#五、jstl-重点" class="header-anchor">#</a> 五、JSTL  重点</h2> <h3 id="_5-1、目前存在的问题"><a href="#_5-1、目前存在的问题" class="header-anchor">#</a> 5.1、目前存在的问题</h3> <blockquote><p>EL主要是用于作用域获取数据，虽然可以做运算判断，但是得到的都是一个结果，做展示；</p> <p>EL不存在流程控制。比如判断；</p> <p>EL对于集合只能做单点访问，不能实现遍历操作。比如循环。</p></blockquote> <h3 id="_5-2、什么是jstl-核心标签库"><a href="#_5-2、什么是jstl-核心标签库" class="header-anchor">#</a> 5.2、什么是JSTL  (核心标签库)</h3> <blockquote><p>JSTL是apache对EL表达式的扩展（也就是说JSTL依赖EL），JSTL是标签语言;</p> <p>不是JSP的内置标签，使用时需要导包</p></blockquote> <h3 id="_5-3、jstl的作用"><a href="#_5-3、jstl的作用" class="header-anchor">#</a> 5.3、JSTL的作用</h3> <blockquote><p>可对EL获取到的数据进行逻辑操作；</p> <p>与EL合作完成数据的展示。</p></blockquote> <h3 id="_5-4、如何使用jstl"><a href="#_5-4、如何使用jstl" class="header-anchor">#</a> 5.4、如何使用JSTL</h3> <blockquote><ol><li>导入Jar包，standard.jar 和 jstl.jar；</li> <li>在JSP页面引入标签库<code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></li></ol></blockquote> <h3 id="_5-5、jstl核心标签"><a href="#_5-5、jstl核心标签" class="header-anchor">#</a> 5.5、JSTL核心标签</h3> <h4 id="_5-5-1、输入输出"><a href="#_5-5-1、输入输出" class="header-anchor">#</a> 5.5.1、输入输出</h4> <blockquote><p>out标签  了解</p> <ul><li>value：可以是字符串常量，也可以是EL表达式</li> <li>default：当要输出的内容为null时，会输出default指定的值</li></ul></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!-- 输出字符串aaa --&gt;
+&lt;c:out value=&quot;aaa&quot;/&gt; 
+&lt;!-- 输出域属性aaa，其中与${aaa}相同 --&gt;
+&lt;c:out value=&quot;${aaa}&quot;/&gt; 
+&lt;!-- 如果${aaa}不存在，那么输出xxx字符串 --&gt;
+&lt;c:out value=&quot;${aaa}&quot; default=&quot;xxx&quot;/&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>set标签   <strong>会用</strong></p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!-- 创建名为a,值为hello的域属性，范围：pageContext --&gt;
+&lt;c:set var=&quot;a&quot; value=&quot;hello&quot;/&gt;  等同于&lt;% pageContext.setAttribute(&quot;a&quot;,&quot;hello&quot;)%&gt;
+&lt;!-- 范围为session --&gt;
+&lt;c:set var=&quot;a&quot; value=&quot;hello&quot; scope=&quot;session&quot;/&gt; &lt;% session.setAttribute(&quot;a&quot;,&quot;hello&quot;)%&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p>remove标签</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!-- 删除名为a的域属性 --&gt;
+&lt;c:remove var=&quot;a&quot;/&gt;      等同于 &lt;% pageContext.removeAttribute(&quot;a&quot;,&quot;hello&quot;)%&gt;
+&lt;!-- 删除page域中名为a的域属性 --&gt;
+&lt;c:remove var=&quot;a&quot; scope=&quot;page&quot;/&gt; 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p>案例</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;jstl输入输出&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%--
+        JSTL
+        增强EL表达式的功能，实现复杂的逻辑操作
+     --%&gt;
+    &lt;%-- 输出 --%&gt;
+    &lt;p&gt;&lt;c:out value=&quot;hello world&quot;/&gt;&lt;/p&gt;
+    &lt;p&gt;hello world&lt;/p&gt;
+    &lt;hr/&gt;
+    &lt;%-- 定义变量
+        int age = 10;
+        在域对象中存放数据，默认在page域中存放
+        scope:指定数据存放在哪个域中
+     --%&gt;
+    &lt;c:set var=&quot;name&quot; value=&quot;Zhangsan&quot; /&gt;
+    &lt;p&gt;${pageScope.name}&lt;/p&gt;
+
+    &lt;c:set var=&quot;age&quot; value=&quot;10&quot; scope=&quot;application&quot; /&gt;
+    &lt;p&gt;${age}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h4 id="_5-5-2、分支结构-重点"><a href="#_5-5-2、分支结构-重点" class="header-anchor">#</a> 5.5.2、分支结构   重点</h4> <blockquote><p><strong>if标签  重点</strong></p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!-- 当条件为true时执行标签体内容 --&gt;
+&lt;c:if test=&quot;${条件}&quot;&gt;     
+    hello
+&lt;/c:if&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p><strong>choose标签  重点</strong></p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!--
+	等同于：
+        if() {
+        } esle if() {
+        } esle if() {
+        } else if() {
+        } else {
+        }
+--&gt;
+&lt;c:choose&gt;
+    &lt;c:when test=&quot;${条件1}&quot;&gt;a&lt;/c:when&gt;
+    &lt;c:when test=&quot;${条件2}&quot;&gt;b&lt;/c:when&gt;
+    &lt;c:when test=&quot;${条件3}&quot;&gt;c&lt;/c:when&gt;
+    &lt;c:otherwise&gt;d&lt;/c:otherwise&gt;
+&lt;/c:choose&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><blockquote><p>案例</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;jstl分支结构&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!--
+        if...else
+            if() {
+            }
+
+            if() {
+            } else {
+            }
+
+            if() {
+            } else if(){
+            } else if() {
+            } else {
+            }
+        使用JSTL实现分支结构
+    --&gt;
+    &lt;c:set var=&quot;num&quot; value=&quot;10&quot; /&gt;
+    &lt;c:if test=&quot;${num &gt; 2}&quot;&gt;  
+        ${num}大于2是成立的
+    &lt;/c:if&gt;
+    &lt;hr/&gt;
+
+    &lt;%-- 判断是否及格 --%&gt;
+    &lt;c:set var=&quot;score&quot; value=&quot;80&quot; /&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${score &gt;= 60}&quot;&gt;
+            &lt;p&gt;及格&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            &lt;p&gt;不及格&lt;/p&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+    &lt;hr/&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${score &gt;= 80}&quot;&gt;
+            &lt;p&gt;优秀&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:when test=&quot;${score &gt;= 70}&quot;&gt;
+            &lt;p&gt;良好&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:when test=&quot;${score &gt;= 60}&quot;&gt;
+            &lt;p&gt;及格&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            &lt;p&gt;不及格&lt;/p&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br></div></div><h4 id="_5-5-3、循环结构-重点"><a href="#_5-5-3、循环结构-重点" class="header-anchor">#</a> 5.5.3、循环结构  重点</h4> <blockquote><p>forEach标签</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;!-- 
+    var：循环变量
+    begin：设置循环变量从几开始。
+    end：设置循环变量到几结束。
+    step：设置步长！等同与java中的i++，或i+=2。step默认为1
+--&gt;
+&lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;10&quot; step=&quot;1&quot;&gt;
+    ${i}
+&lt;/c:forEach&gt;
+
+
+&lt;!--
+	用来输出数组、集合
+    items：指定要循环谁，它可以是一个数组或一个集合
+    var：把数组或集合中的每个元素赋值给var指定的变量
+
+	可以使用varStatus来创建循环状态变量
+		count：循环元素的个数
+        index：循环元素的下标
+        first：是否为第一个元素
+        last：是否为最后一个元素
+        current：当前元素
+--&gt;
+&lt;c:forEach items=&quot;${strs }&quot; var=&quot;str&quot;&gt;
+    ${str }&lt;br/&gt;
+&lt;/c:forEach&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><blockquote><p>案例</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page import=&quot;java.util.List&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@ page import=&quot;com.qf.entity.Person&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSTL循环结构&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%--
+        循环 - 反复做某件事情
+        1.输出1 2 3 ... 5
+        for(int i = 1; i &lt;= 5; i++) {
+            System.out.println(i);
+        }
+    --%&gt;
+    &lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;5&quot; step=&quot;1&quot;&gt;
+        &lt;p&gt;${i}&lt;/p&gt;
+    &lt;/c:forEach&gt;
+    &lt;hr/&gt;
+
+    &lt;%--
+        1+2+3+...+100
+
+        int sum = 0;
+        for(int i = 1; i &lt;= 100; i++) {
+            sum = sum + i;
+        }
+        System.out.println(sum);
+
+        2+4+6+8+...+100
+    --%&gt;
+    &lt;c:set var=&quot;sum&quot; value=&quot;0&quot; /&gt;
+    &lt;c:forEach var=&quot;i&quot; begin=&quot;2&quot; end=&quot;100&quot; step=&quot;2&quot;&gt;
+        &lt;c:set var=&quot;sum&quot; value=&quot;${sum + i}&quot; /&gt;
+    &lt;/c:forEach&gt;
+    &lt;p&gt;${sum}&lt;/p&gt;
+    &lt;hr/&gt;
+
+    &lt;%-- 通过jstl遍历一个集合,在h1标题中显示
+        假设集合从servlet中保存到request域中，然后转发到该页面
+     --%&gt;
+    &lt;%
+        List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add(&quot;1111&quot;);
+        list.add(&quot;2222&quot;);
+        list.add(&quot;333&quot;);
+        list.add(&quot;******&quot;);
+
+        request.setAttribute(&quot;list&quot;, list);
+    %&gt;
+    &lt;%--
+        items:表示被遍历的集合
+        var:每一次被遍历到的元素
+
+        int[] arr = {1, 2, 3};
+        for(int i : arr) {
+
+        }
+    --%&gt;
+    &lt;c:forEach items=&quot;${list}&quot; var=&quot;item&quot;&gt;
+        &lt;h1&gt;${item}&lt;/h1&gt;
+    &lt;/c:forEach&gt;
+
+    &lt;hr/&gt;
+    &lt;%
+        //模拟
+        List&lt;Person&gt; persons = new ArrayList&lt;&gt;();
+        Person p = new Person();
+        p.setId(100);
+        p.setName(&quot;Tom&quot;);
+        p.setAge(20);
+
+        Person p1 = new Person();
+        p1.setId(200);
+        p1.setName(&quot;zs&quot;);
+        p1.setAge(21);
+
+        persons.add(p);
+        persons.add(p1);
+
+        request.setAttribute(&quot;persons&quot;, persons);
+        //emp
+    %&gt;
+
+    &lt;table border=&quot;1&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;id&lt;/th&gt;
+            &lt;th&gt;name&lt;/th&gt;
+            &lt;th&gt;age&lt;/th&gt;
+            &lt;th colspan=&quot;2&quot;&gt;opt&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;c:forEach items=&quot;${persons}&quot; var=&quot;p&quot;&gt;
+            &lt;tr&gt;
+                &lt;td&gt;${p.id}&lt;/td&gt;
+                &lt;td&gt;${p.name}&lt;/td&gt;
+                &lt;td&gt;${p.age}&lt;/td&gt;
+                &lt;td&gt;&lt;a href=&quot;${pageContext.request.contextPath}/xxxServlet?id=${p.id}&quot;&gt;修改&lt;/a&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;a href=&quot;${pageContext.request.contextPath}/aaaServlet?id=${p.id}&quot;&gt;删除&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/c:forEach&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br></div></div><h3 id="_5-6、登录案例升级"><a href="#_5-6、登录案例升级" class="header-anchor">#</a> 5.6、登录案例升级</h3> <blockquote><p>修改login.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;登录&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p style=&quot;color: red;&quot;&gt;${errorMsg}&lt;/p&gt;
+&lt;form action=&quot;${pageContext.request.contextPath}/LoginServlet&quot; method=&quot;post&quot;&gt;
+    &lt;fieldset style=&quot;width: 300px;&quot;&gt;
+        &lt;legend&gt;用户登录&lt;/legend&gt;
+        &lt;p&gt;
+            &lt;label&gt;账号&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入用户名&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;密码&lt;/label&gt;
+            &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;请输入密码&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;验证码&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;code&quot; placeholder=&quot;请输入验证码&quot; /&gt;
+            &lt;img src=&quot;${pageContext.request.contextPath}/CodeServlet&quot; alt=&quot;验证码&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+            &lt;button type=&quot;reset&quot;&gt;重置&lt;/button&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><blockquote><p>修改success.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;success&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${not empty username}&quot;&gt;
+            &lt;p&gt;欢迎${username}&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;${pageContext.request.contextPath}/LogoutServlet&quot;&gt;注销&lt;/a&gt;&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            &lt;p&gt;您还没有登录，请先&lt;a href=&quot;${pageContext.request.contextPath}/login.jsp&quot;&gt;登录&lt;/a&gt;&lt;/p&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h3 id="_5-7、mvc设计模式-面试题"><a href="#_5-7、mvc设计模式-面试题" class="header-anchor">#</a> 5.7、MVC设计模式   面试题</h3> <h4 id="_5-7-1、经典的mvc"><a href="#_5-7-1、经典的mvc" class="header-anchor">#</a> 5.7.1、经典的MVC</h4> <blockquote><p>MVC是软件工程中的一种架构模式，是一种软件设计思想，将数据操作(com.qfedu.dao)、页面展示(com.qfedu.controller)、业务逻辑分为三个层级(com.qfedu.service)（模块），独立完成，相互调用 ，MVC并不是Java独有的，现在几乎所有的B/S的架构都采用了MVC模式，三个层级如下：</p> <ul><li>视图View： 视图即是用户看到并与之交互的界面，比如HTML（静态资源），JSP（动态资源）等等；JSP</li> <li>控制器Controller：控制器即是控制请求的处理逻辑，对请求进行处理，负责流程跳转(转发和重定向)；  servlet          （页面展示   业务逻辑    数据操作    ）</li> <li>模型Model：对客观世界的一种代表和模拟(业务模拟、对象模拟)。 Bean</li></ul> <p>优点：</p> <ul><li>低耦合性：模块与模块之间的关联性不强，不与某一种具体实现产生密不可分的关联性；</li> <li>高维护性：基于低耦合性，可做到不同层级的功能模块灵活更换、插拔；</li> <li>高重用性：相同的数据库操作，可以服务于不同的业务处理。将数据作为独立模块，提高重用性。</li></ul></blockquote> <h4 id="_5-7-2、javaweb经典三层框架"><a href="#_5-7-2、javaweb经典三层框架" class="header-anchor">#</a> 5.7.2、JavaWeb经典三层框架</h4> <blockquote><p>WEB层 controller：包含JSP和Servlet等与WEB相关的内容</p> <p>业务层 service：业务层中不包含JavaWeb API，它只关心业务逻辑</p> <p>数据层 dao：封装了对数据库的访问细节，进行最细粒度的增删改查的操作</p></blockquote> <p><img src="/assets/img/image-20210909162304967.d9e78daf.png" alt="image-20210909162304967"></p> <blockquote><p>调用关系：web层调用---业务层(Service)---数据层(Dao)---DB</p> <ul><li>业务处理从前到后</li> <li>开发时要从后向前进行</li></ul> <p>关于业务：</p> <ul><li>转账</li> <li>对DAO层方法的组合</li></ul> <p>注意：</p> <ul><li>业务层(Service)不要出现Java Web API，业务层代码是可重用的，甚至可以应用到非Web环境中；</li> <li>业务层不要出现JDBC相关的API；</li> <li>JavaBean作为实体类贯穿web层、业务层、数据层，各层之间通过JavaBean或者JavaBean的组合进行数据交互。</li></ul></blockquote> <h4 id="_5-7-3、基于javaweb三层架构升级登录案例-重要"><a href="#_5-7-3、基于javaweb三层架构升级登录案例-重要" class="header-anchor">#</a> 5.7.3、基于JavaWeb三层架构升级登录案例   重要</h4> <blockquote><p>准备工作：</p> <ul><li>建库建表</li> <li>新建项目</li> <li>拷贝Jar包到项目的WEB-INF发lib目录下</li> <li>准备jdbc配置文件，放置在src下</li> <li>JdbcUtils工具类放在utils包下。</li></ul></blockquote> <h5 id="_5-7-3-1、建库建表"><a href="#_5-7-3-1、建库建表" class="header-anchor">#</a> 5.7.3.1、建库建表</h5> <blockquote><p>SQL语句如下</p></blockquote> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> webtest<span class="token punctuation">;</span>
+<span class="token keyword">USE</span> webtest<span class="token punctuation">;</span>
+
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token keyword">user</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">user</span>  <span class="token punctuation">(</span>
+  id <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  username <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  password <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token keyword">user</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'zhangsan'</span><span class="token punctuation">,</span> <span class="token string">'123456'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token keyword">user</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'lisi'</span><span class="token punctuation">,</span> <span class="token string">'123456'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><blockquote><p>对应的实体类User</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
+    
+    <span class="token comment">//set和get</span>
+    <span class="token comment">//toString</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h5 id="_5-7-3-2、dao层"><a href="#_5-7-3-2、dao层" class="header-anchor">#</a> 5.7.3.2、Dao层</h5> <blockquote><p>Dao层接口</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">User</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token class-name">SQLException</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserDao</span> <span class="token punctuation">{</span>
+    <span class="token class-name">User</span> <span class="token function">findByUsernameAndPassword</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">String</span> password<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">SQLException</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>Dao层接口实现类</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>dao<span class="token punctuation">.</span></span><span class="token class-name">UserDao</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">User</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">JdbcUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>dbutils<span class="token punctuation">.</span></span><span class="token class-name">QueryRunner</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>dbutils<span class="token punctuation">.</span>handlers<span class="token punctuation">.</span></span><span class="token class-name">BeanHandler</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token class-name">SQLException</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserDaoImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserDao</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">User</span> <span class="token function">findByUsernameAndPassword</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">String</span> password<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">SQLException</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> sql <span class="token operator">=</span> <span class="token string">&quot;select * from user where username=? and password=?&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> params <span class="token operator">=</span> <span class="token punctuation">{</span>username<span class="token punctuation">,</span> password<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">QueryRunner</span> qr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryRunner</span><span class="token punctuation">(</span><span class="token class-name">JdbcUtils</span><span class="token punctuation">.</span><span class="token function">getDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">User</span> user <span class="token operator">=</span> qr<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BeanHandler</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h5 id="_5-7-3-3、service层"><a href="#_5-7-3-3、service层" class="header-anchor">#</a> 5.7.3.3、Service层</h5> <blockquote><p>Service层接口</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">User</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+    <span class="token class-name">User</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">String</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><blockquote><p>Service层实现类对象</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>dao<span class="token punctuation">.</span></span><span class="token class-name">UserDao</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>dao<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">UserDaoImpl</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">User</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">UserService</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token class-name">SQLException</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserDaoImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">User</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">String</span> password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            user <span class="token operator">=</span> userDao<span class="token punctuation">.</span><span class="token function">findByUsernameAndPassword</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> throwables<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            throwables<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h5 id="_5-7-3-4、controller层"><a href="#_5-7-3-4、controller层" class="header-anchor">#</a> 5.7.3.4、Controller层</h5> <blockquote><p>用于登录验证的Servlet</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>entity<span class="token punctuation">.</span></span><span class="token class-name">User</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">UserService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>qfedu<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">UserServiceImpl</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;LoginServlet&quot;</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">&quot;/LoginServlet&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserService</span> userService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//获取登录信息</span>
+        <span class="token class-name">String</span> username <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">&quot;username&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> password <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">&quot;password&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> code <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">&quot;code&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">HttpSession</span> session <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//使用用户输入的验证码和生成的验证码进行比较</span>
+        <span class="token class-name">String</span> generateCode <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span>session<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;generateCode&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//忽略大小写比较强</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>generateCode<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">//登录验证</span>
+            <span class="token class-name">User</span> user <span class="token operator">=</span> userService<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span><span class="token punctuation">(</span>user <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">//将成功登录的用户信息放在Session中</span>
+                session<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;user&quot;</span><span class="token punctuation">,</span> user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                request<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;/success.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;errorMsg&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;用户名或密码错误，请重新登录&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                request<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;/login.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;errorMsg&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;验证码错误，请重新登录...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            request<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;/login.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doGet</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><blockquote><p>用于生成验证码的Servlet</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">cn<span class="token punctuation">.</span>dsna<span class="token punctuation">.</span>util<span class="token punctuation">.</span>images<span class="token punctuation">.</span></span><span class="token class-name">ValidateCode</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;CodeServlet&quot;</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">&quot;/CodeServlet&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CodeServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//生成验证码</span>
+        <span class="token class-name">ValidateCode</span> codeImg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ValidateCode</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> code <span class="token operator">=</span> codeImg<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//将生成的验证码存放在session中</span>
+        request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;generateCode&quot;</span><span class="token punctuation">,</span> code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//发送给浏览器</span>
+        codeImg<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doGet</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><blockquote><p>用于退出登录的Servlet</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;LogoutServlet&quot;</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">&quot;/LogoutServlet&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogoutServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//让session失效</span>
+        request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//重定向到login.jsp</span>
+        response<span class="token punctuation">.</span><span class="token function">sendRedirect</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getContextPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;/login.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doGet</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h5 id="_5-7-3-5、相关页面"><a href="#_5-7-3-5、相关页面" class="header-anchor">#</a> 5.7.3.5、相关页面</h5> <blockquote><p>登录页面login.jsp</p> <p>注意这个页面中引入jquery用于实现单击刷新验证码，如果加载jquery不能运行成功，删除out目录重试。</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;head&gt;
+    &lt;title&gt;登录&lt;/title&gt;
+    &lt;script src=&quot;${pageContext.request.contextPath}/js/jquery-3.4.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(function () {
+            //单击验证码图片，刷新验证码
+            $(&quot;#codeImg&quot;).click(function () {
+                var date = new Date();
+                $(&quot;#codeImg&quot;).prop(&quot;src&quot;, &quot;${pageContext.request.contextPath}/CodeServlet?timeStamp=&quot; + date.getTime());
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p style=&quot;color: red;&quot;&gt;${errorMsg}&lt;/p&gt;
+&lt;form action=&quot;${pageContext.request.contextPath}/LoginServlet&quot; method=&quot;post&quot;&gt;
+    &lt;fieldset style=&quot;width: 300px;&quot;&gt;
+        &lt;legend&gt;用户登录&lt;/legend&gt;
+        &lt;p&gt;
+            &lt;label&gt;账号&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入用户名&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;密码&lt;/label&gt;
+            &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;请输入密码&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label&gt;验证码&lt;/label&gt;
+            &lt;input type=&quot;text&quot; name=&quot;code&quot; placeholder=&quot;请输入验证码&quot; /&gt;
+            &lt;img id=&quot;codeImg&quot; src=&quot;${pageContext.request.contextPath}/CodeServlet&quot; alt=&quot;验证码&quot; /&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;
+            &lt;button type=&quot;reset&quot;&gt;重置&lt;/button&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><blockquote><p>成功页面success.jsp</p></blockquote> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;success&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${not empty user}&quot;&gt;
+            &lt;p&gt;欢迎${user.username}&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;${pageContext.request.contextPath}/LogoutServlet&quot;&gt;注销&lt;/a&gt;&lt;/p&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            &lt;p&gt;您还没有登录，请先&lt;a href=&quot;${pageContext.request.contextPath}/login.jsp&quot;&gt;登录&lt;/a&gt;&lt;/p&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p><strong>1拷贝login.jsp和success02.jsp ，改成success.jsp</strong></p> <p><strong>2jquery导入到项目，mysql jar导入到项目</strong></p> <p><strong>3复制LoginOutServlet.java过来</strong></p> <p><strong>4修改CodeServlet类中 验证码的key 和取验证码的key保持一致,“code”</strong></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/1/22</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/java/javaWeb/03_JSP入门_Cookie_Session.html" class="prev">
+          JSP入门CookieSession
+        </a></span> <span class="next"><a href="/java/javaWeb/05_Filter.html">
+          Filter
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">JSP进阶ELJSTL</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#一、jsp指令" class="toc-sidebar-link">一、JSP指令</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-1、page指令" class="toc-sidebar-link">1.1、page指令</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-2、include指令" class="toc-sidebar-link">1.2、include指令</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-3、taglib指令-jstl核心标签库-分支-循环" class="toc-sidebar-link">1.3、taglib指令     -----&gt;    jstl核心标签库     分支 循环</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#二、jsp九大内置对象-重点" class="toc-sidebar-link">二、JSP九大内置对象（重点）</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_2-1、简要说明" class="toc-sidebar-link">2.1、简要说明</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_2-2、pagecontext" class="toc-sidebar-link">2.2、pageContext</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#三、jsp动作标签-了解" class="toc-sidebar-link">三、JSP动作标签（了解）</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_3-1、include标签" class="toc-sidebar-link">3.1、include标签</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_3-2、forward" class="toc-sidebar-link">3.2、forward</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#四、el表达式-重点" class="toc-sidebar-link">四、EL表达式  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-1、概述" class="toc-sidebar-link">4.1、概述</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-2、el表达式使用" class="toc-sidebar-link">4.2、EL表达式使用</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-3、el表达式运算符" class="toc-sidebar-link">4.3、EL表达式运算符</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-4、el的隐式对象" class="toc-sidebar-link">4.4、EL的隐式对象</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#五、jstl-重点" class="toc-sidebar-link">五、JSTL  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-1、目前存在的问题" class="toc-sidebar-link">5.1、目前存在的问题</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-2、什么是jstl-核心标签库" class="toc-sidebar-link">5.2、什么是JSTL  (核心标签库)</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-3、jstl的作用" class="toc-sidebar-link">5.3、JSTL的作用</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-4、如何使用jstl" class="toc-sidebar-link">5.4、如何使用JSTL</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-5、jstl核心标签" class="toc-sidebar-link">5.5、JSTL核心标签</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-6、登录案例升级" class="toc-sidebar-link">5.6、登录案例升级</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-7、mvc设计模式-面试题" class="toc-sidebar-link">5.7、MVC设计模式   面试题</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">JSP进阶ELJSTL</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#一、jsp指令" class="toc-sidebar-link">一、JSP指令</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-1、page指令" class="toc-sidebar-link">1.1、page指令</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-2、include指令" class="toc-sidebar-link">1.2、include指令</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_1-3、taglib指令-jstl核心标签库-分支-循环" class="toc-sidebar-link">1.3、taglib指令     -----&gt;    jstl核心标签库     分支 循环</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#二、jsp九大内置对象-重点" class="toc-sidebar-link">二、JSP九大内置对象（重点）</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_2-1、简要说明" class="toc-sidebar-link">2.1、简要说明</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_2-2、pagecontext" class="toc-sidebar-link">2.2、pageContext</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#三、jsp动作标签-了解" class="toc-sidebar-link">三、JSP动作标签（了解）</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_3-1、include标签" class="toc-sidebar-link">3.1、include标签</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_3-2、forward" class="toc-sidebar-link">3.2、forward</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#四、el表达式-重点" class="toc-sidebar-link">四、EL表达式  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-1、概述" class="toc-sidebar-link">4.1、概述</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-2、el表达式使用" class="toc-sidebar-link">4.2、EL表达式使用</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-3、el表达式运算符" class="toc-sidebar-link">4.3、EL表达式运算符</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_4-4、el的隐式对象" class="toc-sidebar-link">4.4、EL的隐式对象</a></li></ul></li><li><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#五、jstl-重点" class="toc-sidebar-link">五、JSTL  重点</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-1、目前存在的问题" class="toc-sidebar-link">5.1、目前存在的问题</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-2、什么是jstl-核心标签库" class="toc-sidebar-link">5.2、什么是JSTL  (核心标签库)</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-3、jstl的作用" class="toc-sidebar-link">5.3、JSTL的作用</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-4、如何使用jstl" class="toc-sidebar-link">5.4、如何使用JSTL</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-5、jstl核心标签" class="toc-sidebar-link">5.5、JSTL核心标签</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-6、登录案例升级" class="toc-sidebar-link">5.6、登录案例升级</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html#_5-7、mvc设计模式-面试题" class="toc-sidebar-link">5.7、MVC设计模式   面试题</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/java/javaWeb/04_JSP%E8%BF%9B%E9%98%B6_EL_JSTL.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <div title="JSP入门CookieSession" class="option-box" style="padding-left:2px;text-align:center;"><a href="/java/javaWeb/03_JSP入门_Cookie_Session.html"><img src="/images/system/pre2.png" width="30px" class="nozoom"> <span class="show-txt">上一篇</span></a></div> <div title="Filter" class="option-box" style="padding-left:2px;text-align:center;"><a href="/java/javaWeb/05_Filter.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1712123086861" defer></script><script src="/assets/js/cg-4.js?v=1712123086861" defer></script><script src="/assets/js/cg-113.js?v=1712123086861" defer></script><script src="/assets/js/cg-1.js?v=1712123086861" defer></script><script src="/assets/js/cg-79.js?v=1712123086861" defer></script><script src="/assets/js/cg-app.js?v=1712123086861" defer></script>
+  </body>
+</html>

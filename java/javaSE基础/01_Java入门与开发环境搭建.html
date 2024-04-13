@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Java入门与开发环境搭建 | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="Java入门与开发环境搭建">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">
+    <meta name="twitter:title" content="Java入门与开发环境搭建">
+    <meta name="twitter:url" content="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1712123086861" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-149.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1712123086861" as="script"><link rel="preload" href="/assets/js/cg-79.js?v=1712123086861" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1712123086861">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/框架/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li><li class="dropdown-item"><!----> <a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实战" class="dropdown-title"><span class="title">实战</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>javaSE基础</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="active sidebar-link">Java入门与开发环境搭建</a></li><li><a href="/java/javaSE基础/02_Java语言基础.html" class="sidebar-link">Java语言基础</a></li><li><a href="/java/javaSE基础/03_控制流程.html" class="sidebar-link">java控制流程</a></li><li><a href="/java/javaSE基础/04_方法.html" class="sidebar-link">方法</a></li><li><a href="/java/javaSE基础/05_数组.html" class="sidebar-link">数组</a></li><li><a href="/java/javaSE基础/06_面向对象基础.html" class="sidebar-link">面向对象基础</a></li><li><a href="/java/javaSE基础/07_面向对象三大特征.html" class="sidebar-link">面向对象三大特征</a></li><li><a href="/java/javaSE基础/08_三个修饰符.html" class="sidebar-link">三个修饰符</a></li><li><a href="/java/javaSE基础/09_接口和内部类.html" class="sidebar-link">接口与内部类</a></li><li><a href="/java/javaSE基础/10_常用类.html" class="sidebar-link">常用类</a></li><li><a href="/java/javaSE基础/11_集合.html" class="sidebar-link">集合</a></li><li><a href="/java/javaSE基础/12_异常.html" class="sidebar-link">异常</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>JavaSE高级</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/JavaSE高级/01_IO.html" class="sidebar-link">IO</a></li><li><a href="/java/JavaSE高级/02_多线程.html" class="sidebar-link">多线程</a></li><li><a href="/java/JavaSE高级/03_网络编程.html" class="sidebar-link">网络编程</a></li><li><a href="/java/JavaSE高级/04_反射.html" class="sidebar-link">反射</a></li><li><a href="/java/JavaSE高级/05_Java8新特性.html" class="sidebar-link">java8新特性</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="java入门与开发环境搭建"><a href="#java入门与开发环境搭建" class="header-anchor">#</a> Java入门与开发环境搭建</h1> <h2 id="一、计算机基础知识"><a href="#一、计算机基础知识" class="header-anchor">#</a> 一、计算机基础知识</h2> <h3 id="_1-1、软件开发"><a href="#_1-1、软件开发" class="header-anchor">#</a> 1.1、软件开发</h3> <blockquote><p>什么是软件？</p> <p><strong>软件</strong>（Software）是一系列按照特定顺序组织的计算机<strong>数据</strong>和<strong>指令</strong>的集合</p> <p>软件分类：</p> <ul><li>系统软件（Windows、Linux、Android、IOS）</li> <li>应用软件（QQ、迅雷、微信...）</li></ul> <p>什么是软件开发？</p> <ul><li>软件开发是根据用户要求建造出软件系统或者系统中的软件部分的过程；</li> <li>软件一般是用<strong>某种程序设计语言</strong>来实现的。</li></ul></blockquote> <h3 id="_1-2、人机交互方式"><a href="#_1-2、人机交互方式" class="header-anchor">#</a> 1.2、人机交互方式</h3> <h4 id="_1-2-1、分类"><a href="#_1-2-1、分类" class="header-anchor">#</a> 1.2.1、分类</h4> <blockquote><ul><li>图形用户界面方式（GUI：Graphical User Interface ）：简单直观，使用者易于接受，容易上手操作；</li> <li>命令行方式（CLI：Command Line Interface ）：需要有一个控制台，输入特定的指令，让计算机完成一些操作。较为麻烦，需要记录住一些命令。</li></ul></blockquote> <h4 id="_1-2-2、打开dos窗口方式"><a href="#_1-2-2、打开dos窗口方式" class="header-anchor">#</a> 1.2.2、打开DOS窗口方式</h4> <blockquote><ul><li>Win+R，然后输入<code>cmd</code>，确定；</li> <li>开始-windows系统-命令提示符；</li> <li>进入文件夹，在地址栏输入<code>cmd</code>。</li></ul></blockquote> <h4 id="_1-2-3、常用dos命令"><a href="#_1-2-3、常用dos命令" class="header-anchor">#</a> 1.2.3、常用DOS命令</h4> <table><thead><tr><th>命令</th> <th>功能</th></tr></thead> <tbody><tr><td><code>dir</code></td> <td>列出当前目录下的文件以及目录</td></tr> <tr><td><code>md</code></td> <td>创建目录</td></tr> <tr><td><code>rd</code></td> <td>删除目录<br><code>/s</code>除目录本身外，还将删除指定目录下的所有子目录和文件。用于删除目录树。<br><code>/q</code>安静模式，带<code>/s</code>删除目录树时不要求确认</td></tr> <tr><td><code>cd</code></td> <td>进入指定目录<br><code>.</code>当前目录<br><code>..</code>上一级目录<br><code>\</code>根目录</td></tr> <tr><td><code>del</code></td> <td>删除文件</td></tr> <tr><td><code>exit</code></td> <td>退出dos命令行</td></tr> <tr><td><code>cls</code></td> <td>清屏</td></tr></tbody></table> <blockquote><p>常用快捷键：</p> <ul><li><p><code>tab</code>：自动补全；</p></li> <li><p><code>← →</code>：移动光标 ；</p></li> <li><p><code>↑ ↓</code>：调阅历史操作命令;</p></li> <li><p><code>Delete</code>和<code>Backspace</code>：删除字符。</p></li></ul></blockquote> <h3 id="_1-3、计算机语言"><a href="#_1-3、计算机语言" class="header-anchor">#</a> 1.3、计算机语言</h3> <blockquote><p><strong>语言</strong>：人与人之间用于沟通的一种方式。例如，中国人与中国人用中文沟通。<strong>语言可以理解成双方都理解的一种约定。</strong></p> <p><strong>计算机语言</strong>：人与计算机交流的方式。要和计算机交流，那么就要学习计算机可以理解的语言，计算机的语言有很多，C、C++、Java、.Net、Python，我们选择学习Java。</p></blockquote> <h2 id="二、java语言概述"><a href="#二、java语言概述" class="header-anchor">#</a> 二、Java语言概述</h2> <h3 id="_2-1、java语言简介"><a href="#_2-1、java语言简介" class="header-anchor">#</a> 2.1、Java语言简介</h3> <blockquote><p>推出公司：Sun Microsystems（Sun公司），后被Oracle收购。</p> <p>主要作者：James Gosling（詹姆斯·高斯林）和同事。</p> <p>历史：</p> <ul><li>1991年为消费类电子产品研发，最初名为Oak；</li> <li><strong>1995年正式推出，更名为Java；</strong></li> <li>1996年，发布JDK 1.0，约8.3万个网页应用Java技术来制作；</li> <li>1997年，发布JDK 1.1，JavaOne会议召开，创当时全球同类会议规模之最；</li> <li>1998年，发布JDK 1.2，同年发布企业平台J2EE；</li> <li>1999年，Java分成J2SE、J2EE和J2ME，JSP/Servlet技术诞生；</li> <li><strong>2004年，发布里程碑式版本：JDK 1.5，为突出此版本的重要性，更名为JDK 5.0；</strong></li> <li>2005年，J2SE -&gt; JavaSE，J2EE -&gt; JavaEE，J2ME -&gt; JavaME；</li> <li>2009年，Oracle公司收购SUN，交易价格74亿美；</li> <li>2011年，发布JDK 7.0</li> <li><strong>2014年，发布JDK8.0，是继JDK 5.0以来变化最大的版本；</strong></li> <li>...</li> <li><strong>2021年，发布JDK17</strong></li> <li>...</li></ul></blockquote> <h3 id="_2-2、java语言平台版本"><a href="#_2-2、java语言平台版本" class="header-anchor">#</a> 2.2、Java语言平台版本</h3> <blockquote><p><strong>JavaSE（Java Standard Edition）标准版（本阶段需要学习）</strong></p> <ul><li>支持面向桌面级应用（如Windows下的应用程序）的Java平台，提供了完整的Java核心API，此版本以前称为J2SE。</li></ul> <p><strong>JavaEE（Java Enterprise Edition）企业版（要深入学习的内容）</strong></p> <ul><li>为开发企业环境下的应用程序提供的一套解决方案。该技术体系中包含的技术如：Servlet 、Jsp等，主要针对于Web应用程序开发。版本以前称为J2EE。</li></ul> <p><strong>JavaME（Java Micro Edition）小型版（不需要学习）</strong></p> <ul><li>支持Java程序运行在移动终端（手机、PDA）上的平台，对Java API有所精简，并加入了针对移动终端的支持，此版本以前称为J2ME</li></ul></blockquote> <h3 id="_2-3、java语言特点"><a href="#_2-3、java语言特点" class="header-anchor">#</a> 2.3、Java语言特点</h3> <blockquote><ul><li>Java语言是简单的</li> <li>Java语言是面向对象的</li> <li>Java语言是健壮的</li> <li><strong>Java语言跨平台的（后面会解释）</strong></li> <li>Java是高性能的</li> <li>Java语言是分布式的</li></ul></blockquote> <h3 id="_2-4、java应用领域"><a href="#_2-4、java应用领域" class="header-anchor">#</a> 2.4、Java应用领域</h3> <blockquote><p><strong>企业级应用</strong>：主要指复杂的大企业的软件系统、各种类型的网站。Java的安全机制以及 它的跨平台的优势，使它在分布式系统领域开发中有广泛应用。应用领域包括金融、电 信、交通、电子商务等。</p> <p><strong>Android平台应用</strong>：Android应用程序使用Java语言编写。Android开发水平的高低很大程度上取决于Java语言核心能力是否扎实。</p> <p><strong>大数据平台开发</strong>：各类框架有Hadoop，spark，storm，flink等，就这类技术生态 圈来讲，还有各种中间件如flume，kafka等 ，这些框架以及工具大多数 是用Java编写而成，但提供诸如Java，scala，Python，R等各种语言API供编程。</p></blockquote> <h3 id="_2-5、为什么要学习java"><a href="#_2-5、为什么要学习java" class="header-anchor">#</a> 2.5、为什么要学习Java</h3> <blockquote><p>上面的特点及应用领域；</p> <p>市场占有率：</p> <ul><li>TIOBE排行榜长期占据前三的位置；</li> <li>国内代码托管平台Gitee，Java开源项目占有率长期处于第一的位置</li></ul></blockquote> <h2 id="三、java开发环境搭建"><a href="#三、java开发环境搭建" class="header-anchor">#</a> 三、Java开发环境搭建</h2> <h3 id="_3-1、搭建过程"><a href="#_3-1、搭建过程" class="header-anchor">#</a> 3.1、搭建过程</h3> <blockquote><p>严格按照教程，一步步完成安装。</p> <p>下载：<code>https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html</code></p> <p>下载时选择正确的版本。</p></blockquote> <h4 id="_3-1-1、安装jdk"><a href="#_3-1-1、安装jdk" class="header-anchor">#</a> 3.1.1、安装JDK</h4> <blockquote><p>单击“下一步”</p></blockquote> <blockquote><p>注意选择JDK安装路径，<strong>一定要安装在一个没有中文和特殊符号的路径下</strong>。</p></blockquote> <blockquote><p>安装图示的要求，选择<strong>不安装JRE</strong>，为什么不安装，后面会解释。</p></blockquote> <blockquote><p>单击“关闭”完成安装。</p></blockquote> <h4 id="_3-1-2、配置环境变量"><a href="#_3-1-2、配置环境变量" class="header-anchor">#</a> 3.1.2、配置环境变量</h4> <blockquote><p>此电脑 - 右键 - 属性 - 高级系统设置 - 环境变量，打开环境变量窗口</p> <p>新建<code>JAVA_HOME</code>环境变量，变量值填写<strong>jdk安装目录的bin的上一级目录</strong>。</p></blockquote> <blockquote><p>配置<code>Path</code>环境变量</p></blockquote> <h4 id="_3-1-3、验证安装配置是否成功"><a href="#_3-1-3、验证安装配置是否成功" class="header-anchor">#</a> 3.1.3、验证安装配置是否成功</h4> <blockquote><p><strong>重新打开</strong>一个CMD窗口，分别输入下面两条命令，如果<strong>有版本信息输出</strong>并且<strong>版本值相同</strong>证明JDK安装配置成功。</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token operator">&gt;</span> javac <span class="token parameter variable">-version</span>
+<span class="token operator">&gt;</span> <span class="token function">java</span> <span class="token parameter variable">-version</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_3-2、需要明确的几个问题"><a href="#_3-2、需要明确的几个问题" class="header-anchor">#</a> 3.2、需要明确的几个问题</h3> <h4 id="_3-2-1、为什么要配置path环境变量"><a href="#_3-2-1、为什么要配置path环境变量" class="header-anchor">#</a> 3.2.1、为什么要配置Path环境变量</h4> <blockquote><p>当在命令行中执行一个程序时，Windows系统首先在当前目录下查找该程序，如果程序不存在，则系统会在系统中已有的一个名为Path的环境变量指定的目录中查找该程序，如果没有找到，就会出现错误提示。</p> <p><code>执行程序查找过程：当前目录 - Path环境变量指定的目录</code></p> <p>后续的开发中我们会频繁的使用<code>javac</code>和<code>java</code>两个命令，如果我们每一次都去JDK安装目录的bin目录下去执行<code>javac</code>和<code>java</code>两个命令，会非常麻烦。根据Windows系统在查找可执行程序的原理，可以将Java工具所在路径定义到Path环境变量中，让系统帮我们去找运行执行的程序。</p></blockquote> <h4 id="_3-2-2、jdk、jre、jvm的关系"><a href="#_3-2-2、jdk、jre、jvm的关系" class="header-anchor">#</a> 3.2.2、JDK、JRE、JVM的关系</h4> <blockquote><p><strong>JDK</strong>： Java Development Kit，Java开发包，是Sun提供的一套用于开发Java应用程序的开发包，它提供了编译、运行 Java 程序所需要的各种工具和资源，包括 Java 编译器、Java 运行时环境（JRE），以及常用的Java类库等。</p> <p><strong>JRE</strong>：Java Runtime Environment，Java 运行时环境，它是运行 Java 程序的必要条件。</p> <p><strong>JVM</strong>：Java Virtual Machine，Java虚拟机，JVM是可以运行Java字节码文件的虚拟计算机。</p> <p>三者关系：</p> <ul><li>JDK包含JRE，JRE包含JVM；</li> <li>如果我们仅仅运行一个Java编写的程序，只需要安装JRE；</li> <li>如果我们需要进行Java语言相关的开发，则需要安装JDK；</li> <li>Java语言最初是sun公司开发的，后来被oracle公司收购，我们下载JDK、JRE需要到oracle官网下载，oracle不提供JVM的下载。</li></ul></blockquote> <h4 id="_3-2-3、java的跨平台性是如何实现的"><a href="#_3-2-3、java的跨平台性是如何实现的" class="header-anchor">#</a> 3.2.3、Java的跨平台性是如何实现的</h4> <blockquote><p><strong>平台</strong>：操作系统</p> <p>Java的跨平台性：通过Java语言编写的应用程序在不同的系统平台上都可以运行。</p> <p>如何实现：</p></blockquote> <blockquote><p>只要在需要运行Java应用程序的操作系统上，先安装一个Java虚拟机(JVM Java Virtual Machine)即可。</p> <p>由JVM来负责Java程序在该系统中的运行。</p> <p>因为有了JVM，所以同一个Java程序在三个不同的操作系统中都可以执行。这样就实现了Java程序的跨平台性。也称为Java具有良好的可移植性。</p> <p><strong>将各自平台的JVM想象成只会一门外语的翻译。</strong></p> <p>注意：我们说的Java跨平台是指的Java语言跨平台，编写好的Java程序通过编译可以在不同的操作系统上运行。JVM不是跨平台的，不同的操作系统上需要安装不同的JVM才能保证Java的跨平台性。</p></blockquote> <h2 id="四、第一个java程序"><a href="#四、第一个java程序" class="header-anchor">#</a> 四、第一个Java程序</h2> <h3 id="_4-1、编辑"><a href="#_4-1、编辑" class="header-anchor">#</a> 4.1、编辑</h3> <blockquote><p>新建一个<code>txt</code>文件，将文件名修改为<code>HelloWorld.java</code>。</p> <p>注意：一定要设置让Windows操作系统显示文件的扩展名。</p> <p>使用文本编辑工具编辑这个文件，输入如下的内容，并<strong>保存</strong>。</p></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//在控制台打印Hello World！	</span>
+<span class="token comment">//定义一个类，注意大括号是成对的</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token punctuation">{</span>
+    <span class="token comment">//类中的内容都要写在大括号内</span>
+    <span class="token comment">//定义一个main方法，main方法是整个程序的入口</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//在控制台输出内容，注意双引号，分号，输入法</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Hello World!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><blockquote><p>由于我们刚刚接触Java，上面案例的很多内容我们暂时无法深入展开，大家先把这段程序<strong>背下来</strong>。</p></blockquote> <h3 id="_4-2、编译"><a href="#_4-2、编译" class="header-anchor">#</a> 4.2、编译</h3> <blockquote><p>打开<code>cmd</code>，进入上面文件所在的文件夹，输入如下的命令：</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code>javac HelloWorld.java
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><blockquote><p>这一步的作用是编译Java程序，我们能够看到文件夹下生成了一个<code>.class</code>文件。</p> <p>编译通俗的说就是将人们能够看懂的代码（上面的<code>.java</code>文件）转换成计算机能够识别的代码（生成的<code>.class</code>文件）。</p></blockquote> <h3 id="_4-3、运行"><a href="#_4-3、运行" class="header-anchor">#</a> 4.3、运行</h3> <blockquote><p>执行如下的命令：</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token function">java</span> HelloWorld
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/2/20</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/java/javaSE基础/02_Java语言基础.html">
+          Java语言基础
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">Java入门与开发环境搭建</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#一、计算机基础知识" class="toc-sidebar-link">一、计算机基础知识</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-1、软件开发" class="toc-sidebar-link">1.1、软件开发</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-2、人机交互方式" class="toc-sidebar-link">1.2、人机交互方式</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-3、计算机语言" class="toc-sidebar-link">1.3、计算机语言</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#二、java语言概述" class="toc-sidebar-link">二、Java语言概述</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-1、java语言简介" class="toc-sidebar-link">2.1、Java语言简介</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-2、java语言平台版本" class="toc-sidebar-link">2.2、Java语言平台版本</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-3、java语言特点" class="toc-sidebar-link">2.3、Java语言特点</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-4、java应用领域" class="toc-sidebar-link">2.4、Java应用领域</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-5、为什么要学习java" class="toc-sidebar-link">2.5、为什么要学习Java</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#三、java开发环境搭建" class="toc-sidebar-link">三、Java开发环境搭建</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_3-1、搭建过程" class="toc-sidebar-link">3.1、搭建过程</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_3-2、需要明确的几个问题" class="toc-sidebar-link">3.2、需要明确的几个问题</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#四、第一个java程序" class="toc-sidebar-link">四、第一个Java程序</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-1、编辑" class="toc-sidebar-link">4.1、编辑</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-2、编译" class="toc-sidebar-link">4.2、编译</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-3、运行" class="toc-sidebar-link">4.3、运行</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">Java入门与开发环境搭建</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#一、计算机基础知识" class="toc-sidebar-link">一、计算机基础知识</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-1、软件开发" class="toc-sidebar-link">1.1、软件开发</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-2、人机交互方式" class="toc-sidebar-link">1.2、人机交互方式</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_1-3、计算机语言" class="toc-sidebar-link">1.3、计算机语言</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#二、java语言概述" class="toc-sidebar-link">二、Java语言概述</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-1、java语言简介" class="toc-sidebar-link">2.1、Java语言简介</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-2、java语言平台版本" class="toc-sidebar-link">2.2、Java语言平台版本</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-3、java语言特点" class="toc-sidebar-link">2.3、Java语言特点</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-4、java应用领域" class="toc-sidebar-link">2.4、Java应用领域</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_2-5、为什么要学习java" class="toc-sidebar-link">2.5、为什么要学习Java</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#三、java开发环境搭建" class="toc-sidebar-link">三、Java开发环境搭建</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_3-1、搭建过程" class="toc-sidebar-link">3.1、搭建过程</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_3-2、需要明确的几个问题" class="toc-sidebar-link">3.2、需要明确的几个问题</a></li></ul></li><li><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#四、第一个java程序" class="toc-sidebar-link">四、第一个Java程序</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-1、编辑" class="toc-sidebar-link">4.1、编辑</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-2、编译" class="toc-sidebar-link">4.2、编译</a></li><li class="toc-sidebar-sub-header"><a href="/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html#_4-3、运行" class="toc-sidebar-link">4.3、运行</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/java/javaSE%E5%9F%BA%E7%A1%80/01_Java%E5%85%A5%E9%97%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <!----> <div title="Java语言基础" class="option-box" style="padding-left:2px;text-align:center;"><a href="/java/javaSE基础/02_Java语言基础.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1712123086861" defer></script><script src="/assets/js/cg-4.js?v=1712123086861" defer></script><script src="/assets/js/cg-149.js?v=1712123086861" defer></script><script src="/assets/js/cg-1.js?v=1712123086861" defer></script><script src="/assets/js/cg-79.js?v=1712123086861" defer></script><script src="/assets/js/cg-app.js?v=1712123086861" defer></script>
+  </body>
+</html>
