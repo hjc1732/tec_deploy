@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3db77489-5cae-43d7-8d38-53625d16a1ab" name="Changes" comment="提交测试">
+    <list default="true" id="3db77489-5cae-43d7-8d38-53625d16a1ab" name="Changes" comment="提交部署">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-1.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-1.js" afterDir="false" />
@@ -111,6 +111,7 @@
       <change beforePath="$PROJECT_DIR$/assets/js/cg-191.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-191.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-192.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-192.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-193.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-193.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cg-194.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-194.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-20.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-20.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-21.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-21.js" afterDir="false" />
@@ -268,6 +269,7 @@
       <change beforePath="$PROJECT_DIR$/中间件/redis/Redis笔记全.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/redis/Redis笔记全.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/中间件/redis/布隆过滤器.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/redis/布隆过滤器.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/中间件/rocketMq/RocketMQ.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/rocketMq/RocketMQ.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/中间件/rocketMq/rocketMq深入.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/rocketMq/rocketMq深入.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/中间件/自定义Starter/上传中央仓库.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/自定义Starter/上传中央仓库.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/中间件/自定义Starter/白名单过滤starter.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/自定义Starter/白名单过滤starter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/中间件/自定义Starter/自定义starter.html" beforeDir="false" afterPath="$PROJECT_DIR$/中间件/自定义Starter/自定义starter.html" afterDir="false" />
@@ -423,6 +425,9 @@
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Lenovo\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3db77489-5cae-43d7-8d38-53625d16a1ab" name="Changes" comment="" />
@@ -432,7 +437,9 @@
       <updated>1712997274980</updated>
       <workItem from="1712997276102" duration="906000" />
       <workItem from="1718345344542" duration="957000" />
-      <workItem from="1718377014182" duration="653000" />
+      <workItem from="1718377014182" duration="1251000" />
+      <workItem from="1718378400967" duration="203000" />
+      <workItem from="1718537257482" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="提交测试">
       <option name="closed" value="true" />
@@ -442,16 +449,44 @@
       <option name="project" value="LOCAL" />
       <updated>1718345686061</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="提交部署">
+      <option name="closed" value="true" />
+      <created>1718377819069</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718377819069</updated>
+    </task>
+    <task id="LOCAL-00003" summary="提交部署">
+      <option name="closed" value="true" />
+      <created>1718377850468</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718377850468</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="提交测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交测试" />
+    <MESSAGE value="提交部署" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交部署" />
   </component>
 </project>
