@@ -22,12 +22,14 @@
       <change beforePath="$PROJECT_DIR$/assets/js/cg-110.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-110.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-111.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-111.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-114.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-114.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cg-115.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-115.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-116.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-116.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-117.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-117.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-118.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-118.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-119.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-119.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-12.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-12.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-120.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-120.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cg-121.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-121.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-122.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-122.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-123.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-123.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-124.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-124.js" afterDir="false" />
@@ -88,15 +90,12 @@
       <change beforePath="$PROJECT_DIR$/assets/js/cg-174.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-174.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-175.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-175.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-176.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-176.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cg-177.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-177.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-178.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-178.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-179.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-179.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-18.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-18.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-180.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-180.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cg-181.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-181.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-182.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-182.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-183.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-183.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cg-184.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-184.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-185.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-185.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-186.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-186.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-187.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-187.js" afterDir="false" />
@@ -121,9 +120,11 @@
       <change beforePath="$PROJECT_DIR$/assets/js/cg-204.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-204.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-205.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-205.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-206.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-206.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cg-207.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-207.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-21.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-21.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-22.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-22.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-23.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-23.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cg-24.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-24.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-25.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-25.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-26.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-26.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/cg-27.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cg-27.js" afterDir="false" />
@@ -346,6 +347,7 @@
       <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/代理模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/代理模式.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/外观模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/外观模式.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/桥接模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/桥接模式.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/组合模式/组合模式实现决策树/组合模式实现规则树引擎.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/组合模式/组合模式实现决策树/组合模式实现规则树引擎.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/装饰者模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/装饰者模式.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/设计模式/结构型模式/适配器模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/结构型模式/适配器模式.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/设计模式/行为型模式/策略模式.html" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式/行为型模式/策略模式.html" afterDir="false" />
@@ -413,22 +415,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/project/project_code_collection/technical_detective/tec_deploy",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/project/project_code_collection/technical_detective/tec_deploy&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\Lenovo\AppData\Roaming\Subversion</configuration>
@@ -446,7 +448,8 @@
       <workItem from="1718378400967" duration="203000" />
       <workItem from="1718537257482" duration="126000" />
       <workItem from="1718543222386" duration="16000" />
-      <workItem from="1719459186301" duration="312000" />
+      <workItem from="1719459186301" duration="345000" />
+      <workItem from="1720017194358" duration="44000" />
     </task>
     <task id="LOCAL-00001" summary="提交测试">
       <option name="closed" value="true" />
@@ -488,7 +491,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718537356065</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="提交部署">
+      <option name="closed" value="true" />
+      <created>1719459511393</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719459511393</updated>
+    </task>
+    <task id="LOCAL-00007" summary="提交部署">
+      <option name="closed" value="true" />
+      <created>1719459515863</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719459515863</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
