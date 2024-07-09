@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>聚合、实体、值对象 | 技术侦探</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <script charset="utf-8" async="async" src="/js/jquery.min.js"></script>
+    <script charset="utf-8" async="async" src="/js/fingerprint2.min.js"></script>
+    <script charset="utf-8" async="async" src="https://s9.cnzz.com/z_stat.php?id=1278232949&amp;web_id=1278232949"></script>
+    <script>
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?0b31b4c146bf7126aed5009e1a4a11c8";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+              })();
+            </script>
+    <meta name="description" content="技术并不是我们所追求的目的,而是技术创新世界">
+    <meta property="article:modified_time" content="null">
+    <meta property="og:title" content="聚合、实体、值对象">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html">
+    <meta name="twitter:title" content="聚合、实体、值对象">
+    <meta name="twitter:url" content="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="all">
+    <meta name="author" content="小傅哥">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="Java基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee4e0787.css" as="style"><link rel="preload" href="/assets/css/styles.css?v=1720522163606" as="style"><link rel="preload" href="/assets/js/cg-styles.js?v=1720522163606" as="script"><link rel="preload" href="/assets/js/cg-app.js?v=1720522163606" as="script"><link rel="preload" href="/assets/js/cg-4.js?v=1720522163606" as="script"><link rel="preload" href="/assets/js/cg-199.js?v=1720522163606" as="script"><link rel="preload" href="/assets/js/cg-1.js?v=1720522163606" as="script"><link rel="preload" href="/assets/js/cg-89.js?v=1720522163606" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4e0787.css"><link rel="stylesheet" href="/assets/css/styles.css?v=1720522163606">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">技术侦探</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/rxJava/rxJava.html" class="nav-link">
+  rxJava
+</a></li><li class="dropdown-subitem"><a href="/java/补充/lua.html" class="nav-link">
+  lua
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          架构
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/架构/项目搭建/项目搭建.html" class="nav-link">
+  项目搭建
+</a></li><li class="dropdown-subitem"><a href="/框架/架构/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li></ul></li><li class="dropdown-item"><h4>
+          ORM
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringSecurity/SpringSecurity.html" class="nav-link">
+  SpringSecurity
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目练手" class="dropdown-title"><span class="title">项目练手</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cj.hjcwzx.top" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  营销抽奖
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li></ul></div></div><div class="nav-item"><a href="https://www.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  网站迁移
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          java
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="nav-link">
+  javaSE
+</a></li><li class="dropdown-subitem"><a href="/java/javaWeb/01_Web开发基础.html" class="nav-link">
+  javaWeb
+</a></li><li class="dropdown-subitem"><a href="/java/JUC/1、JUC概述.html" class="nav-link">
+  JUC
+</a></li><li class="dropdown-subitem"><a href="/java/响应式编程/前置知识.html" class="nav-link">
+  响应式编程
+</a></li><li class="dropdown-subitem"><a href="/设计模式/概述/概述.html" class="nav-link">
+  设计模式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          数据库
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/db/jdbc/01_JDBC.html" class="nav-link">
+  jdbc
+</a></li><li class="dropdown-subitem"><a href="/db/mysql/Mysql基础/01_MySQL概述.html" class="nav-link">
+  mysql
+</a></li></ul></li><li class="dropdown-item"><h4>
+          补充
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/java/补充/Retrofit2.html" class="nav-link">
+  Retrofit2
+</a></li><li class="dropdown-subitem"><a href="/java/补充/rxJava/rxJava.html" class="nav-link">
+  rxJava
+</a></li><li class="dropdown-subitem"><a href="/java/补充/lua.html" class="nav-link">
+  lua
+</a></li><li class="dropdown-subitem"><a href="/java/补充/JVM.html" class="nav-link">
+  jvm
+</a></li><li class="dropdown-subitem"><a href="/java/补充/枚举.html" class="nav-link">
+  枚举
+</a></li><li class="dropdown-subitem"><a href="/java/补充/线程池.html" class="nav-link">
+  线程池
+</a></li><li class="dropdown-subitem"><a href="/java/补充/自定义注解.html" class="nav-link">
+  自定义注解
+</a></li></ul></li><li class="dropdown-item"><h4>
+          前端
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/前端/前端基础/01_HTML.html" class="nav-link">
+  前端基础
+</a></li><li class="dropdown-subitem"><a href="/前端/vue/01_ECMAScript6入门.html" class="nav-link">
+  vue
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架" class="dropdown-title"><span class="title">框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          架构
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/架构/项目搭建/项目搭建.html" class="nav-link">
+  项目搭建
+</a></li><li class="dropdown-subitem"><a href="/框架/架构/DDD架构/01-ddd是什么.html" class="nav-link">
+  DDD
+</a></li></ul></li><li class="dropdown-item"><h4>
+          ORM
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="nav-link">
+  Mybatis
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Spring全家桶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="nav-link">
+  Spring
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="nav-link">
+  SpringMVC
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="nav-link">
+  SpringBoot
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringSecurity/SpringSecurity.html" class="nav-link">
+  SpringSecurity
+</a></li><li class="dropdown-subitem"><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="nav-link">
+  SpringCloudAlibaba
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/中间件/ElasticSearch/ElasticSearch.html" class="nav-link">
+  中间件 | 自研轮子
+</a></div><div class="nav-item"><a href="/部署/linux/01_Linux_安装.html" class="nav-link">
+  部署|运维
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目练手" class="dropdown-title"><span class="title">项目练手</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cj.hjcwzx.top" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  营销抽奖
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://520.hjcwzx.top" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  研究生工作平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/实战/实用工具类/DocUtils.html" class="nav-link">
+  实用工具类
+</a></li><li class="dropdown-item"><!----> <a href="/实战/商城/项目笔记.html" class="nav-link">
+  锋迷铺子
+</a></li></ul></div></div><div class="nav-item"><a href="https://www.hjcwzx.top/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  网站迁移
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="/更新日志/更新日志.html" class="nav-link">
+  更新日志
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>项目搭建</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/框架/架构/项目搭建/项目搭建.html" class="sidebar-link">项目搭建</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>DDD架构(上)</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/框架/架构/DDD架构/01-ddd是什么.html" class="sidebar-link">DDD是什么？</a></li><li><a href="/框架/架构/DDD架构/02-Domain 领域层都包含什么.html" class="sidebar-link">Domain 领域层都包含什么</a></li><li><a href="/框架/架构/DDD架构/03-聚合、实体、值对象.html" class="active sidebar-link">聚合、实体、值对象</a></li><li><a href="/框架/架构/DDD架构/04-仓储，封装持久化数据.html" class="sidebar-link">仓储，封装持久化数据</a></li><li><a href="/框架/架构/DDD架构/05-适配，端口，调用外部接口.html" class="sidebar-link">适配(端口)，调用外部接口</a></li><li><a href="/框架/架构/DDD架构/06-事件，触发异步消息.html" class="sidebar-link">事件，触发异步消息</a></li><li><a href="/框架/架构/DDD架构/07-领域服务，实现约定.html" class="sidebar-link">领域服务，实现约定</a></li></ul></section></li></ul> </aside> <div><main class="page"> <div class="theme-default-content content__default"><h1 id="聚合、实体、值对象"><a href="#聚合、实体、值对象" class="header-anchor">#</a> <strong>聚合</strong>、<strong>实体</strong>、<strong>值对象</strong></h1> <p>在领域驱动设计（Domain-Driven Design, DDD）中，领域模型（Domain Model）是核心概念之一。领域模型是对现实世界中业务领域的抽象，它包含了业务领域的聚合（Aggregates）、实体（Entities）、值对象（Value Objects）等概念。</p> <h2 id="聚合对象"><a href="#聚合对象" class="header-anchor">#</a> <strong>聚合对象</strong></h2> <p>聚合是一组相关对象的集合，它们一起形成一个单一的单元。</p> <h3 id="概念"><a href="#概念" class="header-anchor">#</a> <strong>概念</strong></h3> <p>聚合是领域模型中的一个关键概念，它是一组具有内聚性的相关对象的集合，这些对象一起工作以执行某些业务规则或操作。聚合定义了一组对象的边界，这些对象可以被视为一个单一的单元进行处理。</p> <p><strong>关键：聚合内实现事务一致性、聚合外实现最终一致性。</strong></p> <h3 id="特性"><a href="#特性" class="header-anchor">#</a> <strong>特性</strong></h3> <ol><li><strong>一致性边界</strong>：聚合确保其内部对象的状态变化是一致的。当对聚合内的对象进行操作时，这些操作必须保持聚合内所有对象的一致性。</li> <li><strong>根实体</strong>：每个聚合都有一个根实体（Aggregate Root），它是聚合的入口点。根实体拥有一个全局唯一的标识符，其他对象通过根实体与聚合交互。</li> <li><strong>事务边界</strong>：聚合也定义了事务的边界。在聚合内部，所有的变更操作应该是原子的，即它们要么全部成功，要么全部失败，以此来保证数据的一致性。</li></ol> <h3 id="用途"><a href="#用途" class="header-anchor">#</a> <strong>用途</strong></h3> <ol><li><strong>封装业务逻辑</strong>：聚合通过将相关的对象和操作封装在一起，提供了一个清晰的业务逻辑模型，有助于业务规则的实施和维护。</li> <li><strong>保证一致性</strong>：聚合确保内部状态的一致性，通过定义清晰的边界和规则，聚合可以在内部强制执行业务规则，从而保证数据的一致性。</li> <li><strong>简化复杂性</strong>：聚合通过组织相关的对象，简化了领域模型的复杂性。这有助于开发者更好地理解和扩展系统。</li></ol> <h3 id="实现手段"><a href="#实现手段" class="header-anchor">#</a> <strong>实现手段</strong></h3> <ol><li><strong>定义聚合根</strong>：选择合适的聚合根是实现聚合的第一步。聚合根应该是能够代表整个聚合的实体，并且拥有唯一标识。</li> <li><strong>限制访问路径</strong>：只能通过聚合根来修改聚合内的对象，不允许直接修改聚合内部对象的状态，以此来维护边界和一致性。</li> <li><strong>设计事务策略</strong>：在聚合内部实现事务一致性，确保操作要么全部完成，要么全部回滚。对于聚合之间的交互，可以采用领域事件或其他机制来实现最终一致性。</li> <li><strong>封装业务规则</strong>：在聚合内部实现业务规则和逻辑，确保所有的业务操作都遵循这些规则。</li> <li><strong>持久化</strong>：聚合根通常与数据持久化层交互，以保存聚合的状态。这通常涉及到对象-关系映射（ORM）或其他数据映射技术。</li></ol> <p>通过这些实现手段，DDD中的聚合模型能够帮助开发者构建出既符合业务需求又具有良好架构设计的软件系统。</p> <p>以下是一个简化的Java代码示例，展示了如何在DDD中实现一个聚合。在这个例子中，我们将创建一个简单的订单系统，其中包含订单聚合（Order Aggregate）和订单项（OrderItem）作为内部实体。订单聚合根（Order）将封装所有业务规则，并通过聚合根进行所有的交互。</p> <p>首先，我们定义实体和值对象的基类：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//实体基类</span>
+
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">BaseEntity</span><span class="token punctuation">{</span>
+
+<span class="token keyword">protected</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Long</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> id<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//值对象基类</span>
+
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ValueObject</span><span class="token punctuation">{</span>
+
+<span class="token comment">//值对象通常是不可变的，所以没有setter方法</span>
+
+<span class="token punctuation">}</span>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>然后，我们定义订单项（OrderItem）作为实体：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderItem</span> <span class="token keyword">extends</span> <span class="token class-name">BaseEntity</span><span class="token punctuation">{</span>
+
+<span class="token keyword">private</span> <span class="token class-name">String</span> productName<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">int</span> quantity<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">double</span> price<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Order</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token class-name">StringproductName</span><span class="token punctuation">,</span>intquantity<span class="token punctuation">,</span>doubleprice<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>productName <span class="token operator">=</span> productName<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>quantity <span class="token operator">=</span> quantity<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">=</span> price<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">getTotalPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> quantity <span class="token operator">*</span> price<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//省略getter和setter方法</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><p>接下来，我们定义订单聚合根（Order）：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token class-name"><span class="token namespace">importjava<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span>ArrayList</span><span class="token punctuation">;</span>
+
+<span class="token class-name"><span class="token namespace">importjava<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span>List</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Order</span> <span class="token class-name">Aggregate</span> <span class="token keyword">extends</span> <span class="token class-name">BaseEntity</span><span class="token punctuation">{</span>
+
+<span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">OrderItem</span><span class="token punctuation">&gt;</span></span> orderItems<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token class-name">String</span> customerName<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">boolean</span> isPaid<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Order</span> <span class="token class-name">Aggregate</span><span class="token punctuation">(</span><span class="token class-name">String</span> customerName<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>customerName <span class="token operator">=</span> customerName<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>orderItems <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>isPaid <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addItem</span><span class="token punctuation">(</span><span class="token class-name">OrderItem</span> item<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//业务规则：订单未支付时才能添加订单项</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>isPaid<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+orderItems<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">&quot;Can not add items to apaid order.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">double</span> getTotal <span class="token class-name">Amount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> orderItems<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mapToDouble</span><span class="token punctuation">(</span><span class="token class-name">OrderItem</span><span class="token operator">::</span><span class="token function">getTotalPrice</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">markAsPaid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//业务规则：订单总金额必须大于0才能标记为已支付</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getTotalAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+isPaid <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">&quot;Order total must begreater than 0 to bepaid.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//省略getter和setter方法</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br></div></div><p>最后，我们可以创建一个订单，并添加一些订单项：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Order</span> <span class="token class-name">Demo</span><span class="token punctuation">{</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//创建订单聚合</span>
+
+<span class="token class-name">OrderAggregate</span> orderAggregate<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OrderAggregate</span><span class="token punctuation">(</span><span class="token string">&quot;XiaoFuGe&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//添加订单项</span>
+
+orderAggregate<span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">OrderItem</span><span class="token punctuation">(</span><span class="token string">&quot;手机&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1000.00</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+orderAggregate<span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">OrderItem</span><span class="token punctuation">(</span><span class="token string">&quot;数据线&quot;</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">25.00</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//获取订单总金额</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Total amount:&quot;</span> <span class="token operator">+</span> orderAggregate<span class="token punctuation">.</span><span class="token function">getTotalAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//标记订单为已支付</span>
+
+order <span class="token class-name">Aggregate</span><span class="token punctuation">.</span><span class="token function">markAsPaid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>在这个例子中，我们展示了如何在DDD中定义聚合根和实体，并且如何封装业务规则。订单聚合根（Order）确保了订单项（OrderItem）的一致性，并且只有通过聚合根才能修改订单的状态。这个例子还展示了如何在聚合内部实现事务一致性，例如，订单项只能在订单未支付时添加，订单必须有一个大于0的总金额才能标记为已支付。</p> <h2 id="实体"><a href="#实体" class="header-anchor">#</a> <strong>实体</strong></h2> <p>实体（Entity）在领域驱动设计（Domain-Driven Design, DDD）中是一个核心概念，用于表示具有唯一标识的领域对象。以下是实体的详细介绍：</p> <h3 id="概念-2"><a href="#概念-2" class="header-anchor">#</a> <strong>概念</strong></h3> <p>实体 = 唯一标识 + 状态属性 + 行为动作（功能），是DDD中的一个基本构建块，它代表了具有唯一标识的领域对象。实体不仅仅包含数据（状态属性），还包含了相关的行为（功能），并且它的标识在整个生命周期中保持不变。</p> <h3 id="特性-2"><a href="#特性-2" class="header-anchor">#</a> <strong>特性</strong></h3> <ol><li><strong>唯一标识</strong>：实体具有一个可以区分其他实体的标识符。这个标识符可以是一个ID、一个复合键或者是一个自然键，关键是它能够唯一地标识实体实例。</li> <li><strong>领域标识</strong>：实体的标识通常来源于业务领域，例如用户ID、订单ID等。这些标识符在业务上有特定的含义，并且在系统中是唯一的。</li> <li><strong>委派标识</strong>：在某些情况下，实体的标识可能是由ORM（对象关系映射）框架自动生成的，如数据库中的自增主键。这种标识符虽然可以唯一标识实体，但它并不直接来源于业务领域。</li></ol> <h3 id="用途-2"><a href="#用途-2" class="header-anchor">#</a> <strong>用途</strong></h3> <ol><li><strong>表达业务概念</strong>：实体用于在软件中表达具体的业务概念，如用户、订单、交易等。通过实体的属性和行为，可以描述这些业务对象的特征和能力。</li> <li><strong>封装业务逻辑</strong>：实体不仅仅承载数据，还封装了业务规则和逻辑。这些逻辑包括验证数据的有效性、执行业务规则、计算属性值等。这样做的目的是保证业务逻辑的集中和一致性。</li> <li><strong>保持数据一致性</strong>：实体负责维护自身的状态和数据一致性。它确保自己的属性和关联关系在任何时候都是正确和完整的，从而避免数据的不一致性。</li></ol> <h3 id="实现手段-2"><a href="#实现手段-2" class="header-anchor">#</a> <strong>实现手段</strong></h3> <p>在实现实体时，通常会采用以下手段：</p> <ol><li><strong>定义实体类</strong>：在代码中定义一个类，该类包含实体的属性、构造函数、方法等。</li> <li><strong>实现唯一标识</strong>：为实体类提供一个唯一标识的属性，如ID，并确保在实体的生命周期中这个标识保持不变。</li> <li><strong>封装行为</strong>：在实体类中实现业务逻辑的方法，这些方法可以操作实体的状态，并执行相关的业务规则。</li> <li><strong>使用ORM框架</strong>：利用ORM框架将实体映射到数据库表中，这样可以简化数据持久化的操作。</li> <li><strong>实现领域服务</strong>：对于跨实体或跨聚合的操作，可以实现领域服务来处理这些操作，而不是在实体中直接实现。</li> <li><strong>使用领域事件</strong>：当实体的状态发生变化时，可以发布领域事件，这样可以通知其他部分的系统进行相应的处理。</li></ol> <p>通过上述手段，实体在DDD架构中扮演着重要的角色，它不仅代表了业务概念，还封装了业务逻辑，并通过其唯一标识确保了数据的一致性。</p> <p>以下是一个简单的Java代码示例，展示了如何在领域驱动设计（DDD）中实现一个实体。我们将创建一个User实体，它代表了一个用户，具有唯一的用户ID、姓名和电子邮件地址，并且可以执行一些基本的行为。</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Objects</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">UUID</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">//UserEntity实体类</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserEntity</span><span class="token punctuation">{</span>
+
+<span class="token comment">//实体的唯一标识符</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">UUIDid</span><span class="token punctuation">;</span>
+
+<span class="token comment">//用户的状态属性</span>
+
+<span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token class-name">String</span> email<span class="token punctuation">;</span>
+
+<span class="token comment">//构造函数，用于创建实体实例</span>
+
+<span class="token keyword">public</span> <span class="token class-name">User</span> <span class="token class-name">Entity</span><span class="token punctuation">(</span><span class="token class-name">UUID</span> id<span class="token punctuation">,</span><span class="token class-name">String</span> name<span class="token punctuation">,</span><span class="token class-name">String</span> email<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token operator">=</span>id<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>email<span class="token operator">=</span>email<span class="token punctuation">;</span>
+
+<span class="token comment">//可以在这里添加验证逻辑，确保创建的实体是有效的</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//实体的行为方法，例如更新用户的姓名</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updateName</span><span class="token punctuation">(</span><span class="token class-name">String</span> newName<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//可以在这里添加业务规则，例如验证姓名的格式</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> newName<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//实体的行为方法，例如更新用户的电子邮件地址</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">updateEmail</span><span class="token punctuation">(</span><span class="token class-name">String</span> newEmail<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//可以在这里添加业务规则，例如验证电子邮件地址的格式</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>email<span class="token operator">=</span>newEmail<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//Getter方法</span>
+
+<span class="token keyword">public</span> <span class="token class-name">UUID</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+returnid<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> name<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getEmail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> email<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//实体的equals和hashCode方法，基于唯一标识符实现</span>
+
+<span class="token annotation punctuation">@Override</span>
+
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> o<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">==</span>o<span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>o<span class="token operator">==</span><span class="token keyword">null</span><span class="token operator">||</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span>o<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token class-name">UserEntity</span> user <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">UserEntity</span><span class="token punctuation">)</span>o<span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> id<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Override</span>
+
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> <span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">hash</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//toString方法，用于打印实体信息</span>
+
+<span class="token annotation punctuation">@Override</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span><span class="token string">&quot;UserEntity{&quot;</span><span class="token operator">+</span>
+
+<span class="token string">&quot;id=&quot;</span><span class="token operator">+</span>id<span class="token operator">+</span>
+
+<span class="token string">&quot;,name='&quot;</span><span class="token operator">+</span>name<span class="token operator">+</span><span class="token char">'\''</span><span class="token operator">+</span>
+
+<span class="token string">&quot;,email='&quot;</span><span class="token operator">+</span>email<span class="token operator">+</span><span class="token char">'\''</span><span class="token operator">+</span>
+
+<span class="token char">'}'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//使用实体的示例</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserEntityDemo</span><span class="token punctuation">{</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span>args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//创建一个新的用户实体</span>
+
+<span class="token class-name">UserEntity</span> user<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">UserEntity</span><span class="token punctuation">(</span><span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&quot;XiaoFuGe&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;xiaofuge@qq.com&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//打印用户信息</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//更新用户的姓名</span>
+
+user<span class="token punctuation">.</span><span class="token function">updateName</span><span class="token punctuation">(</span><span class="token string">&quot;XiaoFuGe&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//打印更新后的用户信息</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//更新用户的电子邮件地址</span>
+
+user<span class="token punctuation">.</span><span class="token function">updateEmail</span><span class="token punctuation">(</span><span class="token string">&quot;xiaofuge@qq.com&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//打印更新后的用户信息</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br></div></div><p>在这个例子中，User类代表了用户实体，它有一个唯一的标识符id，这个标识符在实体的整个生命周期中保持不变。name和email是用户的状态属性，updateName和updateEmail是封装了业务逻辑的行为方法。equals和hashCode方法基于唯一标识符实现，以确保实体的正确比较和散列。UserDemo类演示了如何创建和使用User实体。</p> <h2 id="值对象"><a href="#值对象" class="header-anchor">#</a> <strong>值对象</strong></h2> <p>在领域驱动设计（Domain-Driven Design, DDD）中，值对象（Value Object）是一个核心概念，用于封装和表示领域中的概念，其特点是它们描述了领域中的某些属性或度量，但不具有唯一标识。</p> <p>值对象 = 值 + 对象，用于描述对象属性的值，表示具体固定不变的属性值信息。</p> <h3 id="概念-3"><a href="#概念-3" class="header-anchor">#</a> <strong>概念</strong></h3> <p>值对象是由一组属性组成的，它们共同描述了一个领域概念。与实体（Entity）不同，值对象不需要有一个唯一的标识符来区分它们。值对象通常是不可变的，这意味着一旦创建，它们的状态就不应该改变。</p> <h3 id="特性-3"><a href="#特性-3" class="header-anchor">#</a> <strong>特性</strong></h3> <ol><li><strong>不可变性（Immutability）</strong>：值对象一旦被创建，它的状态就不应该发生变化。这有助于保证领域模型的一致性和线程安全性。</li> <li><strong>等价性（Equality）</strong>：值对象的等价性不是基于身份或引用，而是基于对象的属性值。如果两个值对象的所有属性值都相等，那么这两个对象就被认为是等价的。</li> <li><strong>替换性（Replaceability）</strong>：由于值对象是不可变的，任何需要改变值对象的操作都会导致创建一个新的值对象实例，而不是修改现有的实例。</li> <li><strong>侧重于描述事物的状态</strong>：值对象通常用来描述事物的状态，而不是事物的唯一身份。</li> <li><strong>可复用性（Reusability）</strong>：值对象可以在不同的领域实体或其他值对象中重复使用。</li></ol> <h3 id="用途-3"><a href="#用途-3" class="header-anchor">#</a> <strong>用途</strong></h3> <p>值对象的用途非常广泛，它们可以用来表示：</p> <ol><li>金额和货币（如价格、工资、费用等）</li> <li>度量和数据（如重量、长度、体积等）</li> <li>范围或区间（如日期范围、温度区间等）</li> <li>复杂的数学模型（如坐标、向量等）</li> <li>任何其他需要封装的属性集合</li></ol> <h3 id="实现手段-3"><a href="#实现手段-3" class="header-anchor">#</a> <strong>实现手段</strong></h3> <p>在实现值对象时，通常会遵循以下几个步骤：</p> <ol><li><strong>定义不可变类</strong>：确保类的所有属性都是私有的，并且只能通过构造函数来设置。</li> <li><strong>重写equals和hashCode方法</strong>：这样可以确保值对象的等价性是基于它们的属性值，而不是对象的引用。</li> <li><strong>提供只读访问器</strong>：只提供获取属性值的方法，不提供修改属性值的方法。</li> <li><strong>使用工厂方法或构造函数创建实例</strong>：这有助于确保值对象的有效性和一致性。</li> <li><strong>考虑序列化支持</strong>：如果值对象需要在网络上传输或存储到数据库中，需要提供序列化和反序列化的支持。</li></ol> <h3 id="示例"><a href="#示例" class="header-anchor">#</a> <strong>示例</strong></h3> <p>以订单状态为例，可以定义一个值对象来表示不同的状态：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Order</span> <span class="token class-name">StatusVO</span><span class="token punctuation">{</span>
+
+<span class="token function">PLACED</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">&quot;下单&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+<span class="token function">PAID</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">&quot;支付&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+<span class="token function">COMPLETED</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">&quot;完成&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+<span class="token function">CANCELLED</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">&quot;退单&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+
+<span class="token class-name">OrderStatusVO</span><span class="token punctuation">(</span>intcode<span class="token punctuation">,</span><span class="token class-name">String</span> description<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>description <span class="token operator">=</span> description<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> code<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> description<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//根据code获取对应的OrderStatus</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">OrderStatusVOfromCode</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">OrderStatusVO</span> status<span class="token operator">:</span><span class="token class-name">OrderStatusVO</span><span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>status<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>code<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> status<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">throw</span> <span class="token function">newIllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;Invalid code for OrderStatus:&quot;</span><span class="token operator">+</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><p>在这个例子中，OrderStatusVO是一个枚举类型的值对象，它封装了订单状态的代码和描述。它是不可变的，并且提供了基于属性值的等价性。通过定义一个枚举，我们可以确保订单状态的值是受限的，并且每个状态都有一个明确的含义。</p> <p>在数据库中，订单状态可能会以整数形式存储（例如，0表示下单，1表示支付等）。在应用程序中，我们可以使用OrderStatusVO枚举来确保我们在代码中使用的是类型安全的值，而不是裸露的整数。这样可以减少错误，并提高代码的可读性和可维护性。</p> <p>当需要将订单状态存储到数据库中时，我们可以存储枚举的code值。当从数据库中读取订单状态时，我们可以使用fromCode方法来将整数值转换回OrderStatusVO枚举，这样我们就可以在代码中使用丰富的枚举类型而不是简单的整数。</p> <p>值对象也可以用来表示更复杂的结构，比如一个地址：</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">final</span> classAddressVO<span class="token punctuation">{</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Stringstreet</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Stringcity</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">StringzipCode</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Stringcountry</span><span class="token punctuation">;</span>
+
+<span class="token function">publicAddress</span><span class="token punctuation">(</span><span class="token class-name">Stringstreet</span><span class="token punctuation">,</span><span class="token class-name">Stringcity</span><span class="token punctuation">,</span><span class="token class-name">StringzipCode</span><span class="token punctuation">,</span><span class="token class-name">Stringcountry</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">//这里可以添加验证逻辑以确保地址的有效性</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>street<span class="token operator">=</span>street<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>city<span class="token operator">=</span>city<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>zipCode<span class="token operator">=</span>zipCode<span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>country<span class="token operator">=</span>country<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//只读访问器</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getStreet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+returnstreet<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getCity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+returncity<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getZipCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> zipCode<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getCountry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> country<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">//重写equals和hashCode方法</span>
+
+<span class="token annotation punctuation">@Override</span>
+
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Objecto</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">==</span>o<span class="token punctuation">)</span>returntrue<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>o<span class="token operator">==</span><span class="token keyword">null</span><span class="token operator">||</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span>o<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>returnfalse<span class="token punctuation">;</span>
+
+<span class="token class-name">Address</span> address<span class="token operator">=</span><span class="token punctuation">(</span><span class="token class-name">Address</span><span class="token punctuation">)</span>o<span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> street<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>address<span class="token punctuation">.</span>street<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>
+
+city<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>address<span class="token punctuation">.</span>city<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>
+
+zipCode<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>address<span class="token punctuation">.</span>zipCode<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>
+
+country<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>address<span class="token punctuation">.</span>country<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Override</span>
+
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> <span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">hash</span><span class="token punctuation">(</span>street<span class="token punctuation">,</span>city<span class="token punctuation">,</span>zipCode<span class="token punctuation">,</span>country<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br></div></div><p>在这个例子中，AddressVO是一个不可变的值对象，它封装了一个地址的所有部分。它提供了只读访问器，并且重写了equals和hashCode方法以确保基于属性值的等价性。这样的设计有助于确保地址的一致性，并且可以在不同的实体之间重复使用，例如用户和商店都可能有地址。</p> <p>总的来说，值对象是DDD中用于封装领域概念的重要工具，它们通过提供不可变性、基于属性的等价性和替换性来帮助构建一个清晰、一致和可维护的领域模型。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2024/7/9</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/框架/架构/DDD架构/02-Domain 领域层都包含什么.html" class="prev">
+          Domain 领域层都包含什么
+        </a></span> <span class="next"><a href="/框架/架构/DDD架构/04-仓储，封装持久化数据.html">
+          仓储，封装持久化数据
+        </a>
+        →
+      </span></p></div> </main></div> <aside class="page-sidebar"> <div class="page-side-toolbar"><div class="option-box-toc-fixed"><div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:650px"><div style="font-weight:bold;text-align:center;">聚合、实体、值对象</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#聚合对象" class="toc-sidebar-link">聚合对象</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段" class="toc-sidebar-link">实现手段</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实体" class="toc-sidebar-link">实体</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念-2" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性-2" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途-2" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段-2" class="toc-sidebar-link">实现手段</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#值对象" class="toc-sidebar-link">值对象</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念-3" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性-3" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途-3" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段-3" class="toc-sidebar-link">实现手段</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#示例" class="toc-sidebar-link">示例</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box-toc-over"><img src="/images/system/toc.png" class="nozoom"> <span class="show-txt">目录</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:550px"><div style="font-weight:bold;text-align:center;">聚合、实体、值对象</div> <hr> <div class="toc-box"><ul class="toc-sidebar-links"><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#聚合对象" class="toc-sidebar-link">聚合对象</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段" class="toc-sidebar-link">实现手段</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实体" class="toc-sidebar-link">实体</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念-2" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性-2" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途-2" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段-2" class="toc-sidebar-link">实现手段</a></li></ul></li><li><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#值对象" class="toc-sidebar-link">值对象</a><ul class="toc-sidebar-sub-headers"><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#概念-3" class="toc-sidebar-link">概念</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#特性-3" class="toc-sidebar-link">特性</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#用途-3" class="toc-sidebar-link">用途</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#实现手段-3" class="toc-sidebar-link">实现手段</a></li><li class="toc-sidebar-sub-header"><a href="/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html#示例" class="toc-sidebar-link">示例</a></li></ul></li></ul></div></div></div></div></div> <div class="option-box"><img src="/images/system/wechat.png" class="nozoom"> <span class="show-txt">手机看</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.9rem">微信扫一扫</span> <img height="180px" src="https://api.qrserver.com/v1/create-qr-code/?data=https://tec.hjcwzx.top/%E6%A1%86%E6%9E%B6/%E6%9E%B6%E6%9E%84/DDD%E6%9E%B6%E6%9E%84/03-%E8%81%9A%E5%90%88%E3%80%81%E5%AE%9E%E4%BD%93%E3%80%81%E5%80%BC%E5%AF%B9%E8%B1%A1.html" style="margin:10px;">
+                可以<b>手机看</b>或分享至<b>朋友圈</b></div></div></div></div> <div class="option-box"><img src="/images/system/toggle.png" width="30px" class="nozoom"> <span class="show-txt">左栏</span></div> <div class="option-box"><img src="/images/system/xingqiu.png" width="25px" class="nozoom"> <span class="show-txt">星球</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><img height="180px" src="/images/personal/xingqiu.png" style="margin:10px;"> <b>知识星球</b>：技术侦探
+            </div></div></div></div> <div class="option-box"><img src="/images/system/wexin4.png" width="25px" class="nozoom"> <span class="show-txt">交流</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">添加微信一起学习交流</span> <img src="/images/personal/weixin.png" height="180px" style="margin:10px;">
+                PS：添加时请备注<b>技术侦探</b>，谢谢！
+              </div></div></div></div> <div class="option-box"><img src="/images/system/heart-1.png" width="25px" class="nozoom"> <span class="show-txt">支持我</span> <div class="toc-container"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="text-align:center"><span style="font-size:0.8rem;font-weight:bold;">鼓励/支持/赞赏我</span> <img height="180px" src="/images/personal/encourage-head.png" style="margin:5px;"> <br>1. 不靠它生存但仍希望得到你的鼓励；
+                <br>2. 时刻警醒自己保持技术人的初心，沉淀，分享，成长；
+              </div></div></div></div> <div title="Domain 领域层都包含什么" class="option-box" style="padding-left:2px;text-align:center;"><a href="/框架/架构/DDD架构/02-Domain 领域层都包含什么.html"><img src="/images/system/pre2.png" width="30px" class="nozoom"> <span class="show-txt">上一篇</span></a></div> <div title="仓储，封装持久化数据" class="option-box" style="padding-left:2px;text-align:center;"><a href="/框架/架构/DDD架构/04-仓储，封装持久化数据.html"><img src="/images/system/next2.png" width="30px" class="nozoom"> <span class="show-txt">下一篇</span></a></div></div>  <div class="page-side-sitemap"><div class="option-box"><img src="/images/system/sitemap.png" class="nozoom img"> <span class="show-txt">站点图</span> <div class="sitemap-container"><h4>站点导航图
+              <a href="/更新日志/更新日志.html" class="sitemap-top-link"> 更新日志</a></h4> <table class="sitemap-table"><tr><td nowrap="nowrap"><div class="sitemap-col-group">常用搜索</div></td> <td><div class="sitemap-col-item"><a href="http://www.baidu.com/" target="_blank" title="百度">
+          百度
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.google.com/" target="_blank" title="Google">
+          Google
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.bing.com/" target="_blank" title="Bing">
+          Bing
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://github.com" target="_blank" title="Github">
+          Github
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.programcreek.com/java-api-examples/index.php" target="_blank" title="搜代码">
+          搜代码
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">技术社区</div></td> <td><div class="sitemap-col-item"><a href="http://www.csdn.net/" target="_blank" title="CDSN">
+          CDSN
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="http://www.cnblogs.com/" target="_blank" title="博客园">
+          博客园
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.oschina.net" target="_blank" title="OSChina">
+          OSChina
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://segmentfault.com/" target="_blank" title="思否">
+          思否
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://juejin.im" target="_blank" title="掘金">
+          掘金
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.linuxidc.com/" target="_blank" title="Linux公社">
+          Linux公社
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="IBM 开发者">
+          IBM 开发者
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="sitemap-col-item"><a href="https://stackoverflow.com" target="_blank" title="StackOverflow">
+          StackOverflow
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></td> <!----></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Java相关</div></td> <!----> <td><a href="/java/javaSE基础/01_Java入门与开发环境搭建.html" class="sitemap-col-item">
+          JavaSE基础
+        </a><a href="/java/JavaSE高级/01_IO.html" class="sitemap-col-item">
+          JavaSE高级
+        </a><a href="/java/javaWeb/01_Web开发基础.html" class="sitemap-col-item">
+          JavaWeb
+        </a><a href="/java/JUC/1、JUC概述.html" class="sitemap-col-item">
+          JUC
+        </a><a href="/java/补充/JVM.html" class="sitemap-col-item">
+          JVM
+        </a><a href="/java/补充/枚举.html" class="sitemap-col-item">
+          ENUM
+        </a><a href="/java/补充/线程池.html" class="sitemap-col-item">
+          线程池
+        </a><a href="/java/补充/自定义注解.html" class="sitemap-col-item">
+          自定义注解
+        </a><a href="/java/响应式编程/前置知识.html" class="sitemap-col-item">
+          响应式编程
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">Spring</div></td> <!----> <td><a href="/框架/Mybatis/01_MyBatis快速入门.html" class="sitemap-col-item">
+          Mybatis
+        </a><a href="/框架/Mybatis/03_MybatisPlus.html" class="sitemap-col-item">
+          Mybatis Plus
+        </a><a href="/框架/Spring全家桶/Spring/01_SpringIOC和DI.html" class="sitemap-col-item">
+          Spring
+        </a><a href="/框架/Spring全家桶/SpringMVC/01_SpringMVC快速入门及解析.html" class="sitemap-col-item">
+          Spring MVC
+        </a><a href="/框架/Spring全家桶/SpringBoot/01_SpringBoot_入门.html" class="sitemap-col-item">
+          Spring Boot
+        </a><a href="/框架/Spring全家桶/SpringCloudAlibaba/Nacos.html" class="sitemap-col-item">
+          Spring Cloud Alibaba
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">中间件&amp;插件</div></td> <!----> <td><a href="/中间件/maven/01_Maven基础.html" class="sitemap-col-item">
+          Maven中央仓库
+        </a><a href="/中间件/ElasticSearch/ElasticSearch.html" class="sitemap-col-item">
+          ElasticSearch
+        </a><a href="/中间件/redis/Redis笔记全.html" class="sitemap-col-item">
+          Redis
+        </a><a href="/中间件/redis/布隆过滤器.html" class="sitemap-col-item">
+          布隆过滤器
+        </a><a href="/中间件/rocketMq/RocketMQ.html" class="sitemap-col-item">
+          RocketMQ.
+        </a><a href="/中间件/git/笔记.html" class="sitemap-col-item">
+          git
+        </a><a href="/中间件/自定义Starter/自定义starter.html" class="sitemap-col-item">
+          自定义starter
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">运维</div></td> <!----> <td><a href="/部署/nginx/Nginx.html" class="sitemap-col-item">
+          Nginx
+        </a><a href="/部署/docker/docker.html" class="sitemap-col-item">
+          Docker
+        </a><a href="/部署/linux/01_Linux_安装.html" class="sitemap-col-item">
+          Linux
+        </a><a href="/部署/vm/linux安装centos.html" class="sitemap-col-item">
+          VM Ware
+        </a></td></tr><tr><td nowrap="nowrap"><div class="sitemap-col-group">面向对象</div></td> <!----> <td><a href="/设计模式/创建型模式/" class="sitemap-col-item">
+          设计模式
+        </a></td></tr></table></div></div></div> <!----> </aside></div><div class="global-ui"><div class="read-more-wrap" style="display:none;position:absolute;bottom:0px;z-index:9999;width:100%;margin-top:-100px;font-family:PingFangSC-Regular, sans-serif;"><div id="read-more-mask" style="position: relative; height: 200px; background: -webkit-gradient(linear, 0 0%, 0 100%, from(rgba(255, 255, 255, 0)), to(rgb(255, 255, 255)));"></div> <a id="read-more-btn" target="_self" style="position: absolute; left: 50%; top: 70%; bottom: 30px;\n        transform: translate(-50%, -50%); width: 160px; height: 36px;\n         line-height: 36px; font-size: 15px; text-align: center;\n          border: 1px solid rgb(222, 104, 109); color: rgb(222, 104, 109);\n           background: rgb(255, 255, 255); cursor: pointer; border-radius: 6px;">阅读全文</a> <div id="btw-modal-wrap" style="display: none;"><div id="btw-mask" style="position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0.7; z-index: 999; background: rgb(0, 0, 0);"></div> <div id="btw-modal" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; text-align: center; font-size: 13px; background: rgb(255, 255, 255); border-radius: 10px; z-index: 9999; font-family: PingFangSC-Regular, sans-serif;"><span id="btw-modal-close-btn" style="position: absolute; top: 5px; right: 15px; line-height: 34px; font-size: 34px; cursor: pointer; opacity: 0.2; z-index: 9999; color: rgb(0, 0, 0); background: none; border: none; outline: none;">×</span> <p id="btw-modal-header" style="margin-top: 40px; line-height: 1.8; font-size: 13px;">
+            微信扫码或搜索：<span style="color: #E9405A; font-weight: bold;">智慧对话的未来</span> <br>发送：<span id="hutec-token" class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">}</span> <br>即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章</p> <img src="/images/personal/qrcode.png" style="width: 180px; margin-top: 10px; margin-bottom: 30px; border: 8px solid rgb(230, 230, 230);"></div></div></div></div></div>
+    <script src="/assets/js/cg-styles.js?v=1720522163606" defer></script><script src="/assets/js/cg-4.js?v=1720522163606" defer></script><script src="/assets/js/cg-199.js?v=1720522163606" defer></script><script src="/assets/js/cg-1.js?v=1720522163606" defer></script><script src="/assets/js/cg-89.js?v=1720522163606" defer></script><script src="/assets/js/cg-app.js?v=1720522163606" defer></script>
+  </body>
+</html>
